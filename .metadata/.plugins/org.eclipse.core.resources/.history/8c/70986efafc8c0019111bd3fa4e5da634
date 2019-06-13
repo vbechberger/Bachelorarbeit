@@ -1,0 +1,15 @@
+package genetic;
+
+public class CrossoverPMX extends Crossover{
+	private int startIndex = -1;
+	private int endIndex = -1;
+
+	public CrossoverPMX(CrossoverType type, Chromosome firstParent, Chromosome secondParent,
+						int startIndex, int endIndex) {
+		super(type, firstParent, secondParent);
+		this.startIndex = startIndex;
+		this.endIndex = endIndex;
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+
 public class Printer {
 
 	public static void printArray(int [] array) {
@@ -10,7 +12,15 @@ public class Printer {
 		 System.out.println();
 	}
 	
+	public static void printArrayList(ArrayList<Integer> array) {
+		 System.out.println("ArrayList of integers:");		 
+		 for(Integer elem: array) {			
+			 System.out.print(" " + elem + " ");
+		 }
+		 System.out.println();
+	}
+	
 	public static void printString(String string) {
-		 System.out.println(string);		 			 
+		 System.out.println("///////" + string + "////////");		 			 
 	}
 }

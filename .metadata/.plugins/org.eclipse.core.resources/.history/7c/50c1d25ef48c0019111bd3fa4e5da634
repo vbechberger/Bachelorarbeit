@@ -1,0 +1,223 @@
+package genetic;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import util.SaveCopy;
+import util.Printer;
+
+public class Crossover {
+  private CrossoverType type;
+  private Chromosome kid1;
+  private Chromosome kid2;
+  private int [] parent1;
+  private int [] parent2;
+  private int [] arrKid;
+  
+  private final int arrLength;
+  
+//TODO: Make it random - GENERAL PARAMETER
+  private int startIndex = -1;
+  private int endIndex = -1;
+  //can contains indices from 0 to arrLength -1
+  private ArrayList<Integer> indizes = new ArrayList<Integer>();
+  
+  
+  public Crossover(CrossoverType type, Chromosome firstParent,Chromosome secondParent) {
+	  this.type = type;	
+	  arrLength = firstParent.getGenes().length;
+	  parent1 = new int[arrLength];
+	  parent2 = new int[arrLength];
+	  SaveCopy.copy(parent1, firstParent.getGenes());
+	  SaveCopy.copy(parent2, secondParent.getGenes());	  
+	  arrKid = new int[arrLength];
+	  
+	  	  
+  }
+  
+  public void start() {
+	 
+	  
+	   if (type == CrossoverType.ORDERBASED) {
+		   if (indizes.size() == 0) {
+			   throw new IllegalStateException("The indezes are not chosen!");
+		   }
+		 
+		   kid1 = doOrderBased(parent1, parent2);
+		   //kid2 = doOrderBased(parent2, parent1);
+	  } else if (type == CrossoverType.POSITIONBASED) {
+		 // doPositionBased();
+	  } else if (type == CrossoverType.PARTIALLYMAPPED) {
+		  if (startIndex == -1) {
+			  throw new IllegalStateException("The start index is not set!");
+		  }
+		  if (endIndex == -1) {
+			  throw new IllegalStateException("The end index is not set!");
+		  }
+		  kid1 = doPartiallyMapped(parent1, parent2);
+		  kid2 = doPartiallyMapped(parent2, parent1);		  
+	  } else if (type == CrossoverType.CYCLE) {
+		  //doCycle();  
+	  } else {
+		 //other types 
+	  }
+	   //make children's chromosomes
+	  
+	   
+	   
+  }
+  
+  
+  
+  
+  private Chromosome doOrderBased(int [] parent1, int [] parent2) {
+	 
+	 SaveCopy.copy(arrKid, parent2);
+	 
+	 //find the elements which stand at the given positions in the first parent,
+	 //preserving the order
+	 int [] selected = new int[indizes.size()];
+	 
+	 for(int i = 0; i < selected.length; i++){
+			selected[i] = parent1[indizes.get(i)];
+	 }
+	 Printer.printString("selected:");
+	 Printer.printArray(selected);
+	 
+	 //find at which indizes these elements stand in the second parent
+	 ArrayList<Integer> parent2List = new ArrayList<Integer>();
+	 
+	 Printer.printString("parent2List:");
+	 Printer.printArrayList(parent2List);
+	 
+	 SaveCopy.copy(parent2List, parent2);
+	 
+	 ArrayList<Integer> indicesInParent2 = new ArrayList<Integer>();
+	 for(int i = 0; i < selected.length; i++){
+			indicesInParent2.add(parent2List.indexOf(selected[i]));
+	 }
+	 
+	 for(int i = 0; i < selected.length; i++){
+		 arrKid[indicesInParent2.get(i)] = selected[i];
+	 }
+	 
+	 return new Chromosome(arrKid);	 
+	 
+	 
+  }
+  
+  private Chromosome doPositionBased() {
+		 System.out.println("PositionBased to implement");
+		 return null;
+  }
+  
+  private Chromosome doPartiallyMapped(int [] parent1, int [] parent2) {
+		 
+	  	//randomly select two cut points on both parents		 
+		 //fill in two kids by exchanging the genetic information between parents:		
+		 for(int i = 0; i < startIndex; i++) {
+			 arrKid[i] = parent2[i];			
+		 }		 
+		 for(int i = startIndex; i < endIndex + 1; i++) {
+			 arrKid[i] = parent1[i];			 
+		 }
+		 for(int i = endIndex + 1; i < arrLength; i++) {
+			 arrKid[i] = parent2[i];			 
+		 }
+		 
+		 //handle the duplicates in kids:
+		 
+		 //make sets with values between cuts
+		 HashSet<Integer> cut = new HashSet<Integer>();
+		 				 
+		 //determine mapping relationship between cuts <->
+		 HashMap<Integer, Integer> mapping = new HashMap<Integer, Integer>();
+		 
+		 for(int i = startIndex; i < endIndex + 1; i++) {
+			 mapping.put(parent1[i], parent2[i]);
+			 cut.add(arrKid[i]);
+		 }
+		 		 
+		 /**fill in the first kid from the rest of the second parent,
+		 /*taking into account which values the first kid already has from 
+		 /* the first parent
+		  */
+		 for(int i = 0; i < startIndex; i++) {
+			 
+			 //if the value at index i is in mapping, i.e. is duplicated in the kid
+			 if(cut.contains(arrKid[i])) {
+				 while(cut.contains(arrKid[i])) {
+					 arrKid[i] = mapping.get(arrKid[i]);
+				 }				
+			 }			 			 
+		 }
+		 
+		 for(int i = endIndex + 1; i < arrLength; i++) {
+			 
+			 //if the value at index i is in mapping, i.e. is duplicated in the kid
+			 if(cut.contains(arrKid[i])) {
+				 while(cut.contains(arrKid[i])) {
+					 arrKid[i] = mapping.get(arrKid[i]);
+				 }				
+			 }
+			 			 
+		 }
+		 Printer.printString("Kid in crossover:");
+		 Printer.printArray(arrKid);
+		 return new Chromosome(arrKid);
+	  
+  }
+  
+  
+  
+  private Chromosome doCycle() {
+		 System.out.println("PartiallyMapped to implement"); 
+		 return null;
+  }
+  
+ 
+  
+  
+  
+  
+
+
+  public void setStartIndex(int startIndex) {
+	this.startIndex = startIndex;
+}
+
+
+  public void setEndIndex(int endIndex) {
+	this.endIndex = endIndex;
+}
+  
+  
+
+public ArrayList<Integer> getIndizes() {
+	return indizes;
+}
+
+public void setIndizes(ArrayList<Integer> indizes) {
+	this.indizes = indizes;
+}
+
+/*Getter methods*/
+  public Chromosome getKid1() {
+	  if(kid1 == null) {
+		  throw new RuntimeException("Crossover was not started. There exists no kids!");
+	  }
+	  return kid1;
+  }
+
+  public Chromosome getKid2() {
+	  if(kid2 == null) {
+		  throw new RuntimeException("Crossover was not started. There exists no kids!");
+	  }
+	  return kid2;
+  }
+
+  
+  
+  
+  
+}

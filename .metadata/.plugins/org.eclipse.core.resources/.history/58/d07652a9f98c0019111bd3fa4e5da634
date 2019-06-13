@@ -1,0 +1,10 @@
+package genetic;
+
+public class CrossoverOBX extends Crossover{
+
+	public CrossoverOBX(CrossoverType type, Chromosome firstParent, Chromosome secondParent) {
+		super(type, firstParent, secondParent);
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,50 @@
+package genetic;
+
+import java.util.ArrayList;
+
+public class Simulation {
+	  private CrossoverType type;
+	  private Chromosome kid1;
+	  private Chromosome kid2;
+	  private Chromosome parent1;
+	  private Chromosome parent2;
+	  private ArrayList<Integer> indices = new ArrayList<Integer>();
+	  private int startIndex = -1;
+	  private int endIndex = -1;
+
+	
+	public Simulation(Chromosome parent1, Chromosome parent2, CrossoverType type, 
+			ArrayList<Integer> indices, int startIndex, int endIndex) {
+		
+	}
+	public void start() {
+		 
+		  
+		   if (type == CrossoverType.ORDERBASED) {
+			   			   
+			   Crossover crossover = new CrossoverOBX(type, parent1, parent2, indices);
+		  } else if (type == CrossoverType.POSITIONBASED) {
+			 // doPositionBased();
+		  } else if (type == CrossoverType.PARTIALLYMAPPED) {
+			  	  
+		  } else if (type == CrossoverType.CYCLE) {
+			  //doCycle();  
+		  } else {
+			 //other types 
+		  }
+		   //make children's chromosomes
+
+	}
+
+
+	public ArrayList<Integer> getIndices() {
+		return indices;
+	}
+
+
+	public void setIndices(ArrayList<Integer> indices) {
+		this.indices = indices;
+	}
+	
+	
+}

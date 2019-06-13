@@ -1,0 +1,71 @@
+package genetic;
+
+import java.util.ArrayList;
+
+import util.SaveCopy;
+
+public class Simulation {
+	  private Crossover crossover;
+	  private CrossoverType type;
+	  private Chromosome kid1;
+	  private Chromosome kid2;
+	  private Chromosome parent1;
+	  private Chromosome parent2;
+	  private ArrayList<Integer> indices = new ArrayList<Integer>();
+	  private int startIndex = -1;
+	  private int endIndex = -1;
+
+	
+	public Simulation(Chromosome parent1, Chromosome parent2, CrossoverType type, 
+					ArrayList<Integer> indices, int startIndex, int endIndex) {
+		this.parent1 = parent1;
+		this.parent2 = parent2;
+		this.type = type;
+		SaveCopy.copy(this.indices,indices);
+		this.startIndex = startIndex;
+		this.endIndex = endIndex;
+		
+	}
+	
+	public Simulation (Chromosome parent1, Chromosome parent2, CrossoverType type, 
+			ArrayList<Integer> indices) {
+		this(parent1, parent2, type, indices, -1, -1);
+	}
+	
+	public Simulation (Chromosome parent1, Chromosome parent2, CrossoverType type, int startIndex, int endIndex) {
+		this(parent1, parent2, type, null, startIndex, endIndex);
+	}
+	
+	
+	public void start() {
+		 
+		  
+		   if (type == CrossoverType.ORDERBASED) {			   			   
+			   crossover = new CrossoverOBX(type, parent1, parent2, indices);
+		  } else if (type == CrossoverType.POSITIONBASED) {
+			 // doPositionBased();
+		  } else if (type == CrossoverType.PARTIALLYMAPPED) {
+			  crossover = new CrossoverPMX(type, parent1, parent2, startIndex, endIndex);	  
+		  } else if (type == CrossoverType.CYCLE) {
+			  //doCycle();  
+		  } else {
+			 //other types 
+		  }
+		   //make children's chromosomes
+		   crossover.start();
+		   kid1 = crossover.getKid1();
+		   kid2 = crossover.getKid2();
+	}
+
+
+	public ArrayList<Integer> getIndices() {
+		return indices;
+	}
+
+
+	public void setIndices(ArrayList<Integer> indices) {
+		this.indices = indices;
+	}
+	
+	
+}

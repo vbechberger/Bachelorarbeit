@@ -1,0 +1,66 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import genetic.Chromosome;
+import genetic.Crossover;
+import genetic.CrossoverType;
+import util.Printer;
+
+public class OBXTest {
+	
+	private Crossover crossover;
+	private Chromosome c1;
+	private Chromosome c2;
+	private ArrayList<Integer> indizes = new ArrayList<Integer>();
+	
+	
+
+	@Test
+	public void testOBXKid1CutMiddle() {
+		
+		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
+		Chromosome c1 = new Chromosome(tour1);
+		
+		int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
+		Chromosome c2 = new Chromosome(tour2);
+		
+		crossover = new Crossover(CrossoverType.ORDERBASED, c1, c2);
+		crossover.getIndizes().add(2);
+		crossover.getIndizes().add(4);
+		crossover.getIndizes().add(5);
+		crossover.start();
+		
+		int [] expected = new int[] {1,5,2,4,6,3,7,8};
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
+		
+	}
+	
+	@Test
+	public void testOBXKid2CutMiddle() {
+		
+		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
+		Chromosome c1 = new Chromosome(tour1);
+		
+		int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
+		Chromosome c2 = new Chromosome(tour2);
+		
+		crossover = new Crossover(CrossoverType.ORDERBASED, c1, c2);
+		crossover.getIndizes().add(2);
+		crossover.getIndizes().add(4);
+		crossover.getIndizes().add(5);
+		crossover.start();
+		
+		int [] expected = new int[] {1,2,6,5,4,3,8,7};
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
+		
+	}
+
+}

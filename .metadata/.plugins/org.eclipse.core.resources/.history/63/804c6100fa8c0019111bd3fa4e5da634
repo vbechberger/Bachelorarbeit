@@ -1,0 +1,19 @@
+package genetic;
+
+import java.util.ArrayList;
+
+public class CrossoverOBX extends Crossover{
+	
+	private ArrayList<Integer> indizes = new ArrayList<Integer>();
+
+	public CrossoverOBX(CrossoverType type, Chromosome firstParent, Chromosome secondParent) {
+		super(type, firstParent, secondParent);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void start() {
+		
+		
+	}
+
+}

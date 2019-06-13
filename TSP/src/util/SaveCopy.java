@@ -51,15 +51,17 @@ public class SaveCopy {
 		}
 	}
 	public static void copy(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {
-		if(arr2.size() == 0) {
-			throw new RuntimeException("The second array list is empty!");
-		}
-		length = arr2.size();
-		if(arr1.size() > arr2.size()) {
-			throw new RuntimeException("The first array list is longer than the second one!");
-		}
-		for (int i = 0; i < length; i++) {
-			arr1.add(i, arr2.get(i));
+		if(arr2 != null) {
+			if(arr2.size() == 0) {
+				throw new RuntimeException("The second array list is empty!");
+			}
+			length = arr2.size();
+			if(arr1.size() > arr2.size()) {
+				throw new RuntimeException("The first array list is longer than the second one!");
+			}
+			for (int i = 0; i < length; i++) {
+				arr1.add(i, arr2.get(i));
+			}
 		}
 	}
 }

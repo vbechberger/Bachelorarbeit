@@ -1,0 +1,24 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+import genetic.Chromosome;
+import genetic.Crossover;
+
+public class OBXTest {
+	
+	private Crossover crossover;
+	private Chromosome c1;
+	private Chromosome c2;
+	private ArrayList<Integer> indizes = new ArrayList<Integer>();
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
