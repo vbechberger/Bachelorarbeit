@@ -2,6 +2,7 @@ package genetic;
 
 public enum CrossoverType {
 
+		MODIFIED,
 	    ORDERBASED,
 	    ORDER,
 	    POSITIONBASED,

@@ -1,0 +1,50 @@
+package genetic;
+
+import java.util.HashSet;
+
+import util.SaveCopy;
+
+public class CrossoverModifiedX extends CrossoverOneCutPoint {
+
+	public CrossoverModifiedX(Chromosome firstParent, Chromosome secondParent, int startIndex) {
+		super(firstParent, secondParent, startIndex);
+	}
+
+	@Override
+	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		//make a set with values till the cut point
+		 HashSet<Integer> cut = new HashSet<Integer>();
+		 
+		//fill in the offspring with the values from the first parent
+		//from the beginning till the cut point
+		for(int i = 0; i < startIndex; i++) {
+			 arrKid[i] = parent1[i];
+			 //fill in the set
+			 cut.add(arrKid[i]);
+		 }
+		
+		//if the cut point is the first or the last index
+		//then we just copy the corresponding parent
+		if (startIndex == 0) {			
+			SaveCopy.copy(arrKid, parent2);			
+		} else if(startIndex == arrLength - 1) {
+			SaveCopy.copy(arrKid, parent1);
+		} else {
+			
+			//define where we start to fill in the offspring 
+			//with the values from the second parent
+			int pos = endIndex + 1;
+
+			for(int i = 0; i < arrLength; i++) {
+				if(!cut.contains(arrKid[i])) {
+					arrKid[pos] = parent2[i]; 	
+					pos++;
+				}		
+			}
+		}
+				
+		return new Chromosome(arrKid);
+	}
+
+}

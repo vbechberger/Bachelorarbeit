@@ -2,10 +2,10 @@ package genetic;
 
 import java.util.HashSet;
 
-public class CrossoverOX extends CrossoverCutPoints{
+public class CrossoverOX extends CrossoverTwoCutPoints{
 
-	public CrossoverOX(Chromosome firstParent, Chromosome secondParent, int startIndex, int endIndex) {
-		super(firstParent, secondParent,startIndex, endIndex);
+	public CrossoverOX(Chromosome firstParent, Chromosome secondParent, int cutPoint1, int cutPoint2) {
+		super(firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 	
 	protected Chromosome doCrossover(int [] parent1, int [] parent2) {
@@ -14,7 +14,7 @@ public class CrossoverOX extends CrossoverCutPoints{
 		 HashSet<Integer> cut = new HashSet<Integer>();
 		
 		//values between the cut points are copied to the offspring from the first parent at the same positions
-		for(int i = startIndex; i < endIndex + 1; i++) {
+		for(int i = cutPoint; i < cutPoint2 + 1; i++) {
 			 arrKid[i] = parent1[i];
 			 
 			 //save the values between cut points of the first parent
@@ -28,19 +28,19 @@ public class CrossoverOX extends CrossoverCutPoints{
 		int pos = -1;
 		
 		//define where we start to fill in the offspring
-		if(endIndex == arrLength - 1) {
+		if(cutPoint2 == arrLength - 1) {
 			pos = 0;
 		} else {
-			pos = endIndex + 1;
+			pos = cutPoint2 + 1;
 		}
 		//fill in the offspring
-		for(int i = endIndex + 1; i < arrLength; i++) {
+		for(int i = cutPoint2 + 1; i < arrLength; i++) {
 			if(!cut.contains(parent2[i])) {
 				arrKid[pos] = parent2[i];
 				pos++;
 			} 			 		 
 		 }
-		for(int i = 0; i < endIndex + 1; i++) {
+		for(int i = 0; i < cutPoint2 + 1; i++) {
 			if(!cut.contains(parent2[i])) {
 				arrKid[pos] = parent2[i];
 				

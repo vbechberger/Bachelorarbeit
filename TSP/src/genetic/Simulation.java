@@ -35,11 +35,16 @@ public class Simulation {
 	public Simulation (CrossoverType type, Chromosome parent1, Chromosome parent2, int startIndex, int endIndex) {
 		this(type, parent1, parent2, null, startIndex, endIndex);
 	}
+	public Simulation (CrossoverType type, Chromosome parent1, Chromosome parent2, int startIndex) {
+		this(type, parent1, parent2, null, startIndex, -1);
+	}
 	
 	
 	public void start() {
-		 
-		  if (type == CrossoverType.ORDER) {
+		
+		  if (type == CrossoverType.MODIFIED) {
+			  crossover = new CrossoverModifiedX(parent1, parent2, startIndex);	
+		  }	else if (type == CrossoverType.ORDER) {
 			  crossover = new CrossoverOX(parent1, parent2, startIndex, endIndex);
 		  } else if (type == CrossoverType.ORDERBASED) {			   			   
 			   crossover = new CrossoverOBX(parent1, parent2, indices);

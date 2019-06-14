@@ -1,0 +1,17 @@
+package genetic;
+
+public class CrossoverModifiedX extends CrossoverCutPoints {
+
+	public CrossoverModifiedX(Chromosome firstParent, Chromosome secondParent, int startIndex) {
+		super(firstParent, secondParent, startIndex);
+	}
+
+	@Override
+	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		for(int i = 0; i < startIndex; i++) {
+			 arrKid[i] = parent1[i];			
+		 }
+	}
+
+}

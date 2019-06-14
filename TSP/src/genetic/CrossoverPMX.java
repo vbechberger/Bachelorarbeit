@@ -3,24 +3,24 @@ package genetic;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class CrossoverPMX extends CrossoverCutPoints{
+public class CrossoverPMX extends CrossoverTwoCutPoints{
 
 	public CrossoverPMX(Chromosome firstParent, Chromosome secondParent,
-						int startIndex, int endIndex) {
-		super(firstParent, secondParent, startIndex, endIndex);
+						int cutPoint1, int cutPoint2) {
+		super(firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 	
 	protected Chromosome doCrossover(int [] parent1, int [] parent2) {
 		 
 	  	//randomly select two cut points on both parents		 
 		 //fill in two kids by exchanging the genetic information between parents:		
-		 for(int i = 0; i < startIndex; i++) {
+		 for(int i = 0; i < cutPoint; i++) {
 			 arrKid[i] = parent2[i];			
 		 }		 
-		 for(int i = startIndex; i < endIndex + 1; i++) {
+		 for(int i = cutPoint; i < cutPoint2 + 1; i++) {
 			 arrKid[i] = parent1[i];			 
 		 }
-		 for(int i = endIndex + 1; i < arrLength; i++) {
+		 for(int i = cutPoint2 + 1; i < arrLength; i++) {
 			 arrKid[i] = parent2[i];			 
 		 }
 		 
@@ -32,7 +32,7 @@ public class CrossoverPMX extends CrossoverCutPoints{
 		 //determine mapping relationship between cuts <->
 		 HashMap<Integer, Integer> mapping = new HashMap<Integer, Integer>();
 		 
-		 for(int i = startIndex; i < endIndex + 1; i++) {
+		 for(int i = cutPoint; i < cutPoint2 + 1; i++) {
 			 mapping.put(parent1[i], parent2[i]);
 			 cut.add(arrKid[i]);
 		 }
@@ -41,7 +41,7 @@ public class CrossoverPMX extends CrossoverCutPoints{
 		 /*taking into account which values the first kid already has from 
 		 /* the first parent
 		  */
-		 for(int i = 0; i < startIndex; i++) {
+		 for(int i = 0; i < cutPoint; i++) {
 			 
 			 //if the value at index i is in mapping, i.e. is duplicated in the kid
 			 if(cut.contains(arrKid[i])) {
@@ -51,7 +51,7 @@ public class CrossoverPMX extends CrossoverCutPoints{
 			 }			 			 
 		 }
 		 
-		 for(int i = endIndex + 1; i < arrLength; i++) {
+		 for(int i = cutPoint2 + 1; i < arrLength; i++) {
 			 
 			 //if the value at index i is in mapping, i.e. is duplicated in the kid
 			 if(cut.contains(arrKid[i])) {

@@ -1,0 +1,10 @@
+package genetic;
+
+public abstract class CrossoverCutPoints extends Crossover {
+	
+	public CrossoverCutPoints(Chromosome firstParent, Chromosome secondParent) {
+		super(firstParent, secondParent);
+	
+	}
+
+}

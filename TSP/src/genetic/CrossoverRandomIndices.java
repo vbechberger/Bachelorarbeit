@@ -14,10 +14,9 @@ public abstract class CrossoverRandomIndices extends Crossover {
 		
 	}
 
-	@Override
 	public void start() {
 
-		if (indices.size() == 0) {
+		if (indices == null || indices.size() == 0) {
 			   throw new IllegalStateException("The indezes are not chosen!");
 		}
 		
