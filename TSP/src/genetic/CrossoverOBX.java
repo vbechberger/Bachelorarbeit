@@ -5,27 +5,14 @@ import java.util.Collections;
 
 import util.SaveCopy;
 
-public class CrossoverOBX extends Crossover{
-	
-	private ArrayList<Integer> indices = new ArrayList<Integer>();
+public class CrossoverOBX extends CrossoverRandomIndices{
 
-	public CrossoverOBX(CrossoverType type, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
-		super(type, firstParent, secondParent);
-		SaveCopy.copy(this.indices, indices);
-		// TODO Auto-generated constructor stub
+	public CrossoverOBX(Chromosome firstParent, Chromosome secondParent, 
+						ArrayList<Integer> indices) {
+		super(firstParent, secondParent, indices);
 	}
 	
-	public void start() {
-		
-		if (indices.size() == 0) {
-			   throw new IllegalStateException("The indezes are not chosen!");
-		}
-		
-		kid1 = doOrderBased(parent1, parent2);
-		kid2 = doOrderBased(parent2, parent1);
-	}
-	
-	private Chromosome doOrderBased(int [] parent1, int [] parent2) {
+	protected Chromosome doCrossover(int [] parent1, int [] parent2) {
 		 
 		 SaveCopy.copy(arrKid, parent2);
 		 

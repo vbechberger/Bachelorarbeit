@@ -1,0 +1,23 @@
+package genetic;
+
+import java.util.ArrayList;
+
+import util.SaveCopy;
+
+public abstract class CrossoverRandomIndices extends Crossover {
+	protected static ArrayList<Integer> indices = new ArrayList<Integer>();
+
+	public CrossoverRandomIndices(CrossoverType type, Chromosome firstParent, Chromosome secondParent,
+								ArrayList<Integer> indices) {
+		super(type, firstParent, secondParent);
+		SaveCopy.copy(this.indices, indices);
+		
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

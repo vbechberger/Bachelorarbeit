@@ -1,0 +1,21 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import genetic.Chromosome;
+import genetic.Simulation;
+
+public class OXTest {
+	private Simulation simulation;
+	//private Crossover crossover;
+	private Chromosome c1;
+	private Chromosome c2;
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

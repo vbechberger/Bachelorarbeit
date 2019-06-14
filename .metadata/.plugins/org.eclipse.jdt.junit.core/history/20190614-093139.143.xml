@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PMXTest" project="TSP" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="test.PMXTest" time="0.008">
+    <testcase name="testPMXKid1IndexStart" classname="test.PMXTest" time="0.005"/>
+    <testcase name="testPMXKid2CutMiddle" classname="test.PMXTest" time="0.001"/>
+    <testcase name="testPMXKid1CutMiddle" classname="test.PMXTest" time="0.0"/>
+    <testcase name="testPMXKid2IndexEnd" classname="test.PMXTest" time="0.001"/>
+    <testcase name="testPMXKid2IndexStart" classname="test.PMXTest" time="0.0"/>
+    <testcase name="testPMXKid1IndexEnd" classname="test.PMXTest" time="0.001"/>
+  </testsuite>
+</testrun>

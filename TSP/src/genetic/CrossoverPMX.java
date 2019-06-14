@@ -3,33 +3,14 @@ package genetic;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import util.Printer;
+public class CrossoverPMX extends CrossoverCutPoints{
 
-public class CrossoverPMX extends Crossover{
-	private int startIndex = -1;
-	private int endIndex = -1;
-
-	public CrossoverPMX(CrossoverType type, Chromosome firstParent, Chromosome secondParent,
+	public CrossoverPMX(Chromosome firstParent, Chromosome secondParent,
 						int startIndex, int endIndex) {
-		super(type, firstParent, secondParent);
-		this.startIndex = startIndex;
-		this.endIndex = endIndex;
-		// TODO Auto-generated constructor stub
+		super(firstParent, secondParent, startIndex, endIndex);
 	}
 	
-	public void start() {
-		
-		if (startIndex == -1) {
-			  throw new IllegalStateException("The start index is not set!");
-		  }
-		  if (endIndex == -1) {
-			  throw new IllegalStateException("The end index is not set!");
-		  }
-		  kid1 = doPartiallyMapped(parent1, parent2);
-		  kid2 = doPartiallyMapped(parent2, parent1);
-	}
-	
-	private Chromosome doPartiallyMapped(int [] parent1, int [] parent2) {
+	protected Chromosome doCrossover(int [] parent1, int [] parent2) {
 		 
 	  	//randomly select two cut points on both parents		 
 		 //fill in two kids by exchanging the genetic information between parents:		
@@ -80,8 +61,7 @@ public class CrossoverPMX extends Crossover{
 			 }
 			 			 
 		 }
-		 Printer.printString("Kid in crossover:");
-		 Printer.printArray(arrKid);
+		 
 		 return new Chromosome(arrKid);
 	  
   }

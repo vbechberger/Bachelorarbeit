@@ -1,0 +1,48 @@
+package genetic;
+
+import java.util.HashSet;
+
+public class CrossoverOX extends Crossover {
+	private int startIndex = -1;
+	private int endIndex = -1;
+
+	public CrossoverOX(CrossoverType type, Chromosome firstParent, Chromosome secondParent, int startIndex, int endIndex) {
+		super(type, firstParent, secondParent);
+		this.startIndex = startIndex;
+		this.endIndex = endIndex;
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		if (startIndex == -1) {
+			  throw new IllegalStateException("The start index is not set!");
+		  }
+		  if (endIndex == -1) {
+			  throw new IllegalStateException("The end index is not set!");
+		  }
+		  kid1 = doOrder(parent1, parent2);
+		  kid2 = doOrder(parent2, parent1);
+
+	}
+	
+	private Chromosome doOrder(int [] parent1, int [] parent2) {
+		
+		//make a set with values between cuts from the second parent
+		 HashSet<Integer> cut = new HashSet<Integer>();
+		
+		//values between the cut points are copied to the offspring from the first parent at the same positions
+		for(int i = startIndex; i < endIndex + 1; i++) {
+			 arrKid[i] = parent1[i];
+			 
+			 //save the values between cut points of the second parent
+			 cut.add(parent2[i]);
+		 }
+		
+				
+		//the remaining positions of the offspring are filled by considering 
+		//the sequence in the second parent, starting after the second 
+		//cut point and then continue from the beginning of the second parent
+	}
+
+}

@@ -1,0 +1,11 @@
+package genetic;
+
+public class CrossoverOX extends Crossover {
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

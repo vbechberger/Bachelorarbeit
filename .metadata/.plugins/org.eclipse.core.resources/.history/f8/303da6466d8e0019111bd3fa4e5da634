@@ -1,0 +1,27 @@
+package genetic;
+
+public class CrossoverOX extends Crossover {
+	private int startIndex = -1;
+	private int endIndex = -1;
+
+	public CrossoverOX(CrossoverType type, Chromosome firstParent, Chromosome secondParent, int startIndex, int endIndex) {
+		super(type, firstParent, secondParent);
+		this.startIndex = startIndex;
+		this.endIndex = endIndex;
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		if (startIndex == -1) {
+			  throw new IllegalStateException("The start index is not set!");
+		  }
+		  if (endIndex == -1) {
+			  throw new IllegalStateException("The end index is not set!");
+		  }
+		  kid1 = doPartiallyMapped(parent1, parent2);
+		  kid2 = doPartiallyMapped(parent2, parent1);
+
+	}
+
+}

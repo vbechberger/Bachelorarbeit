@@ -1,0 +1,16 @@
+package genetic;
+
+public abstract class CrossoverRandomIndex extends Crossover {
+
+	public CrossoverRandomIndex(CrossoverType type, Chromosome firstParent, Chromosome secondParent) {
+		super(type, firstParent, secondParent);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

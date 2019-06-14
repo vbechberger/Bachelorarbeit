@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.*;
@@ -15,16 +14,13 @@ public class OBXTest {
 	
 	private Simulation simulation;
 	//private Crossover crossover;
-	private Chromosome c1;
-	private Chromosome c2;
-	private ArrayList<Integer> indices = new ArrayList<Integer>();
+	private static Chromosome c1;
+	private static Chromosome c2;
+	private static ArrayList<Integer> indices = new ArrayList<Integer>();
 	
 	
-	
-
-	@Test
-	public void testOBXKid1() {
-		
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
 		c1 = new Chromosome(tour1);
 		
@@ -34,6 +30,10 @@ public class OBXTest {
 		indices.add(2);
 		indices.add(4);
 		indices.add(5);
+	}
+
+	@Test
+	public void testOBXKid1() {
 		
 		simulation = new Simulation(CrossoverType.ORDERBASED, c1, c2, indices);
 		simulation.start();
@@ -46,16 +46,6 @@ public class OBXTest {
 	
 	@Test
 	public void testOBXKid2() {
-		
-		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
-		c1 = new Chromosome(tour1);
-		
-		int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
-		c2 = new Chromosome(tour2);
-		
-		indices.add(2);
-		indices.add(4);
-		indices.add(5);
 		
 		simulation = new Simulation(CrossoverType.ORDERBASED, c1, c2, indices);
 		simulation.start();

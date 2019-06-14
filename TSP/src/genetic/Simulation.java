@@ -39,13 +39,14 @@ public class Simulation {
 	
 	public void start() {
 		 
-		  
-		   if (type == CrossoverType.ORDERBASED) {			   			   
-			   crossover = new CrossoverOBX(type, parent1, parent2, indices);
+		  if (type == CrossoverType.ORDER) {
+			  crossover = new CrossoverOX(parent1, parent2, startIndex, endIndex);
+		  } else if (type == CrossoverType.ORDERBASED) {			   			   
+			   crossover = new CrossoverOBX(parent1, parent2, indices);
 		  } else if (type == CrossoverType.POSITIONBASED) {
 			 // doPositionBased();
 		  } else if (type == CrossoverType.PARTIALLYMAPPED) {
-			  crossover = new CrossoverPMX(type, parent1, parent2, startIndex, endIndex);	  
+			  crossover = new CrossoverPMX(parent1, parent2, startIndex, endIndex);	  
 		  } else if (type == CrossoverType.CYCLE) {
 			  //doCycle();  
 		  } else {

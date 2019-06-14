@@ -1,0 +1,74 @@
+package genetic;
+
+import java.util.HashSet;
+
+public class CrossoverOX extends CrossoverCutPoints{
+
+	public CrossoverOX(CrossoverType type, Chromosome firstParent, Chromosome secondParent, int startIndex, int endIndex) {
+		super(type, firstParent, secondParent,startIndex, endIndex);
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		if (startIndex == -1) {
+			  throw new IllegalStateException("The start index is not set!");
+		  }
+		  if (endIndex == -1) {
+			  throw new IllegalStateException("The end index is not set!");
+		  }
+		  kid1 = doOrder(parent1, parent2);
+		  kid2 = doOrder(parent2, parent1);
+
+	}
+	
+	private Chromosome doCrossover(int [] parent1, int [] parent2) {
+		
+		//make a set with values between cuts 
+		 HashSet<Integer> cut = new HashSet<Integer>();
+		
+		//values between the cut points are copied to the offspring from the first parent at the same positions
+		for(int i = startIndex; i < endIndex + 1; i++) {
+			 arrKid[i] = parent1[i];
+			 
+			 //save the values between cut points of the first parent
+			 cut.add(parent1[i]);
+		 }
+		
+				
+		//the remaining positions of the offspring are filled by considering 
+		//the sequence in the second parent, starting after the second 
+		//cut point and then continue from the beginning of the second parent
+		int pos = -1;
+		
+		//define where we start to fill in the offspring
+		if(endIndex == arrLength - 1) {
+			pos = 0;
+		} else {
+			pos = endIndex + 1;
+		}
+		//fill in the offspring
+		for(int i = endIndex + 1; i < arrLength; i++) {
+			if(!cut.contains(parent2[i])) {
+				arrKid[pos] = parent2[i];
+				pos++;
+			} 			 		 
+		 }
+		for(int i = 0; i < endIndex + 1; i++) {
+			if(!cut.contains(parent2[i])) {
+				arrKid[pos] = parent2[i];
+				
+				//if the tail part of the offspring is filled, start from the beginning
+				if (pos == arrLength - 1) {
+					pos = 0;
+				} else {
+					pos++;
+				}
+				
+			} 
+		 }
+		
+		return new Chromosome(arrKid);
+	}
+
+}

@@ -1,14 +1,9 @@
 package genetic;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import util.SaveCopy;
-import util.Printer;
 
 public abstract class Crossover {
-  private CrossoverType type;
+
   protected Chromosome kid1;
   protected Chromosome kid2;
   protected int [] parent1;
@@ -18,8 +13,8 @@ public abstract class Crossover {
   protected final int arrLength;
   
   
-  public Crossover(CrossoverType type, Chromosome firstParent,Chromosome secondParent) {
-	  this.type = type;	
+  public Crossover(Chromosome firstParent,Chromosome secondParent) {
+		
 	  arrLength = firstParent.getGenes().length;
 	  parent1 = new int[arrLength];
 	  parent2 = new int[arrLength];
