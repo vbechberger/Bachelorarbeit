@@ -1,0 +1,15 @@
+package genetic;
+
+public abstract class CrossoverRandomSubset extends Crossover {
+
+	public CrossoverRandomSubset(Chromosome firstParent, Chromosome secondParent) {
+		super(firstParent, secondParent);
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

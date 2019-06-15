@@ -1,11 +1,12 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Printer {
 
 	public static void printArray(int [] array) {
-		 System.out.println("Array of integers:");		 
+		 System.out.println("Array of integers: ");		 
 		 for(int i = 0; i < array.length; i++) {			
 			 System.out.print(" " + array[i] + " ");
 		 }
@@ -20,7 +21,24 @@ public class Printer {
 		 System.out.println();
 	}
 	
+	public static void printHashMap(HashMap<Integer, Integer> map) {
+		 System.out.println("HashMap of integers: index -> value");		 
+		 for(Integer key: map.keySet()) {			
+			 System.out.println("Key: " + key + ", value: " + map.get(key) + " ");
+			 
+		 }
+		 System.out.println();
+	}
+	
 	public static void printString(String string) {
 		 System.out.println("///////" + string + "////////");		 			 
+	}
+	
+	public static void printInt(Integer integer) {
+		 System.out.println("Integer: " + integer + " ");		 			 
+	}
+	
+	public static void printInt(int smallInt) {
+		 System.out.println("int: " + smallInt + " ");		 			 
 	}
 }

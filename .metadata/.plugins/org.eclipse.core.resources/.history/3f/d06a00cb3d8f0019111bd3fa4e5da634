@@ -1,0 +1,83 @@
+package genetic;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+import util.SaveCopy;
+
+/**
+ * This class represents the cycle crossover, which focuses on subsets of cities
+ * that occupy the same subset of positions in both parents. These cities are
+ * copied from the first parent to the offspring at exactly the same positions
+ * and the remaining positions are filled with the cities from the second
+ * parent.
+ * 
+ * @author vbechberger
+ *
+ */
+public class ChrossoverCycleX extends CrossoverRandomSubset {
+	
+	//TODO:CHECK that starts with 1!!!!!!!!!!
+	private int firstCityNr = 1;
+
+	public ChrossoverCycleX(Chromosome firstParent, Chromosome secondParent) {
+		super(firstParent, secondParent);
+	}
+
+	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		// TODO Auto-generated method stub
+		HashMap<Integer, Integer> elements = findElemSamePos(parent1, parent2);
+		
+		//if there is no elements which take the same positions in both parents,
+		//kid=parent1		
+		if(elements.isEmpty()) {
+			SaveCopy.copy(arrKid,parent1);
+			return new Chromosome(arrKid);
+		}
+		
+		//chose the random subset
+		//TODO: Make it random
+		//For now I take all the values in this set
+		for(Map.Entry<Integer,Integer> entry : elements.entrySet()) {
+		    Integer cityNr = entry.getKey();
+		    Integer index = entry.getValue();
+		    arrKid[index] = cityNr;
+		}    
+		
+		
+		return null;
+	}
+	
+	private HashMap<Integer, Integer> findElemSamePos(int[] parent1, int[] parent2) {
+		
+		ArrayList<Integer> parent1List = new ArrayList<Integer>();
+		ArrayList<Integer> parent2List = new ArrayList<Integer>();
+		
+		//the hash map with the elements which have the same indices in both parents
+		//Map: the city number -> its index in the parents
+		HashMap<Integer, Integer> elements = new HashMap<Integer, Integer>();
+		
+		SaveCopy.copy(parent1List, parent1);
+		SaveCopy.copy(parent2List, parent1);
+		
+		if (firstCityNr == -1) {
+			throw new IllegalStateException("The number of the first city is not given!");
+		}
+		
+		for (int i = firstCityNr; i < parent1.length + 1; i++) {
+			int index = parent1List.indexOf(i);
+			
+			if (index == parent2List.indexOf(i)) {
+				elements.put(i, index);
+			}
+		}		
+		return elements;
+	}
+	
+	private 
+	
+	
+
+}

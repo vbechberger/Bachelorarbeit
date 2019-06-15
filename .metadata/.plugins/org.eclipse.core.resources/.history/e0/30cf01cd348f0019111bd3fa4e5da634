@@ -1,0 +1,40 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import genetic.Chromosome;
+import genetic.CrossoverType;
+import genetic.Simulation;
+
+public class CycleX {
+	
+	private Simulation simulation;
+	//private Crossover crossover;
+	private static Chromosome c1;
+	private static Chromosome c2;
+	private static ArrayList<Integer> indices = new ArrayList<Integer>();
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
+		c1 = new Chromosome(tour1);
+		
+		int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
+		c2 = new Chromosome(tour2);
+	}
+
+	@Test
+	public void testCycleXKid1() {
+		simulation = new Simulation(CrossoverType.CYCLE, c1, c2, indices);
+		simulation.start();
+		
+		
+		fail("Not yet implemented");
+	}
+
+}

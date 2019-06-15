@@ -5,3 +5,34 @@
 1560497144886	Rename type 'CrossoverRandomIndex'
 1560504855424	Delete element
 1560504884266	Rename type 'CrossoverOneCutPoint'
+1560581697650	Delete element
+1560593800736	Rename type 'CrossoverRandomSubset'
+1560593936684	Rename type 'CycleX'
+1560594271720	Rename type 'ChrossoverCycleX'
+1560600079504	Move compilation unit
+1560600105540	Move compilation unit
+1560600114630	Delete element
+1560600374161	Move compilation unit
+1560600380554	Move compilation unit
+1560600385204	Move compilation unit
+1560600390335	Move compilation unit
+1560600395147	Move compilation unit
+1560600400350	Move compilation unit
+1560600419316	Move compilation unit
+1560600424013	Move compilation unit
+1560600428395	Move compilation unit
+1560600433233	Move compilation unit
+1560600440210	Move compilation unit
+1560600505366	Move compilation unit
+1560600509601	Move compilation unit
+1560600516317	Move compilation unit
+1560600520496	Move compilation unit
+1560600524500	Move compilation unit
+1560600528109	Move compilation unit
+1560600532029	Move compilation unit
+1560600535217	Move compilation unit
+1560600538264	Move compilation unit
+1560600610208	Copy package
+1560600638550	Delete element
+1560600658431	Delete element
+1560600676384	Rename package 'genetic.other'

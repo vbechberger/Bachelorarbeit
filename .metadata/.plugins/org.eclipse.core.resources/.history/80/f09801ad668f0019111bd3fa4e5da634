@@ -1,0 +1,8 @@
+package genetic.other;
+
+public class TSP {
+
+	enum Type {
+		MetricTSP, EuclideTSP, ATSP
+	};
+}
