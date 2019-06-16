@@ -1,0 +1,39 @@
+package genetic.crossover;
+
+import java.util.ArrayList;
+
+import genetic.Chromosome;
+import util.SaveCopy;
+
+public class CrossoverPBX extends CrossoverRandomIndices {
+
+	public CrossoverPBX(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+		super(firstParent, secondParent, indices);
+	}
+
+	@Override
+	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	
+		//remember the cities, which were found at the selected positions in the 
+		//first parent
+		
+		HashSet<Integer> selected = new HashMap<Integer>();
+		//copy the cities, which were found at the selected positions in the 
+		//first parent, to the offspring at the same positions
+		
+		for(Integer index: indices) {
+			arrKid[index] = parent1[index];
+		}
+		
+		//the other positions are filled with the remaining cities in 
+		//the same order as in the second parent
+		int nextIndex = 0;
+		for (int i = 0; i < arrLength; i++) {
+			if
+			arrKid[i] = parent2[i];
+		}
+		
+		return null;
+	}
+
+}

@@ -7,6 +7,7 @@ import genetic.crossover.CrossoverCycleX;
 import genetic.crossover.CrossoverModifiedX;
 import genetic.crossover.CrossoverOBX;
 import genetic.crossover.CrossoverOX;
+import genetic.crossover.CrossoverPBX;
 import genetic.crossover.CrossoverPMX;
 import genetic.crossover.CrossoverType;
 import util.SaveCopy;
@@ -59,11 +60,9 @@ public class Simulation {
 		} else if (type == CrossoverType.ORDERBASED) {
 			crossover = new CrossoverOBX(parent1, parent2, indices);
 		} else if (type == CrossoverType.POSITIONBASED) {
-			// doPositionBased();
+			crossover = new CrossoverPBX(parent1, parent2, indices);
 		} else if (type == CrossoverType.PARTIALLYMAPPED) {
 			crossover = new CrossoverPMX(parent1, parent2, startIndex, endIndex);
-		} else if (type == CrossoverType.CYCLE) {
-			// doCycle();
 		} else {
 			// other types
 		}

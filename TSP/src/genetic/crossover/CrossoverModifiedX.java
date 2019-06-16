@@ -13,6 +13,8 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 
 	@Override
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		int[] arrKid = new int[arrLength];
 
 		// make a set with values till the cut point
 		HashSet<Integer> cut = new HashSet<Integer>();

@@ -22,6 +22,8 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
 		
+		int[] arrKid = new int[arrLength];
+		
 		HashMap<Integer, Integer> cycle = findCycle(parent1, parent2);
 		
 		//if there is no cycle, i.e. if two parents are equal,

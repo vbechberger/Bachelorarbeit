@@ -12,6 +12,8 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		int[] arrKid = new int[arrLength];
 
 		// randomly select two cut points on both parents
 		// fill in two kids by exchanging the genetic information between

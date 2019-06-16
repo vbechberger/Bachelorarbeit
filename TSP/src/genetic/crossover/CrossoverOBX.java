@@ -13,6 +13,8 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		int[] arrKid = new int[arrLength];
 
 		SaveCopy.copy(arrKid, parent2);
 

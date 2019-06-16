@@ -9,7 +9,6 @@ public abstract class Crossover {
 	protected Chromosome kid2;
 	protected int[] parent1;
 	protected int[] parent2;
-	protected int[] arrKid;
 
 	protected final int arrLength;
 
@@ -20,7 +19,6 @@ public abstract class Crossover {
 		parent2 = new int[arrLength];
 		SaveCopy.copy(parent1, firstParent.getGenes());
 		SaveCopy.copy(parent2, secondParent.getGenes());
-		arrKid = new int[arrLength];
 	}
 
 	public abstract void start();

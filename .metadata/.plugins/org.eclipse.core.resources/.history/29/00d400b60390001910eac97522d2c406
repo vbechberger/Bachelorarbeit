@@ -1,0 +1,20 @@
+package genetic.crossover;
+
+import java.util.ArrayList;
+
+import genetic.Chromosome;
+
+public class CrossoverPBX extends CrossoverRandomIndices {
+
+	public CrossoverPBX(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+		super(firstParent, secondParent, indices);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

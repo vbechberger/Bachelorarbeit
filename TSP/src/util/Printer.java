@@ -2,6 +2,7 @@ package util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Printer {
 
@@ -40,5 +41,14 @@ public class Printer {
 	
 	public static void printInt(int smallInt) {
 		 System.out.println("int: " + smallInt + " ");		 			 
+	}
+	
+	public static void printHashSet(HashSet<Integer> set) {
+		System.out.println("Hashset of integers:");
+		 for(Integer value: set) {
+			 System.out.print(" " + value + " ");
+		 }
+		 System.out.println();
+		 
 	}
 }

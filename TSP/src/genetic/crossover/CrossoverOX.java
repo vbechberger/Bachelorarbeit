@@ -11,6 +11,8 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+		
+		int[] arrKid = new int[arrLength];
 
 		// make a set with values between cuts
 		HashSet<Integer> cut = new HashSet<Integer>();

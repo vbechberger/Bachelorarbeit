@@ -13,7 +13,7 @@ import util.*;
 public class OBXTest {
 	
 	private Simulation simulation;
-	//private Crossover crossover;
+	
 	private static Chromosome c1;
 	private static Chromosome c2;
 	private static ArrayList<Integer> indices = new ArrayList<Integer>();
