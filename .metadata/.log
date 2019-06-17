@@ -201,3 +201,24 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
 	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:280)
 	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:382)
 	... 30 more
+!SESSION 2019-06-17 07:48:33.344 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ru_RU
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/valeria/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/valeria/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2019-06-17 07:48:52.232
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.epp.logging.aeri.ui 2 18 2019-06-17 07:50:15.643
+!MESSAGE Updating the index from remote failed. Version: 1.0.0.v20150617-0732
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.epp.internal.logging.aeri.ui.log.ProblemsDatabaseUpdateJob.getEtag(ProblemsDatabaseUpdateJob.java:95)
+	at org.eclipse.epp.internal.logging.aeri.ui.log.ProblemsDatabaseUpdateJob.run(ProblemsDatabaseUpdateJob.java:58)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.epp.logging.aeri.ui 2 6 2019-06-17 07:50:15.656
+!MESSAGE Failed to determine ETAG for remote problems database. Stopping update. Version: 1.0.0.v20150617-0732

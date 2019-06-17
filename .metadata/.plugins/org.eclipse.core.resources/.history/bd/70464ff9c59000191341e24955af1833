@@ -1,0 +1,9 @@
+package genetic.mutation;
+
+public class MutationSwap extends Mutation {
+
+	public MutationSwap() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

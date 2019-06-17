@@ -1,0 +1,17 @@
+package genetic.mutation;
+
+import genetic.Chromosome;
+
+public class Mutation {
+	
+	protected Chromosome mutant;
+	protected int[] genes;
+	
+	protected final int arrLength;
+	
+	public Mutation(int[] genes, int index1, int index2) {
+		arrLength = genes.length;
+		
+		
+	}
+}

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import genetic.Chromosome;
-import util.Printer;
 
 public class CrossoverPBX extends CrossoverRandomIndices {
 
@@ -37,9 +36,6 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 			//first parent	
 			selectedValues.add(parent1[index]);
 		}
-		Printer.printString("After par1:");
-		Printer.printArray(arrKid);
-		
 		
 		
 		//the other positions are filled with the remaining cities in 

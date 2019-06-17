@@ -1,0 +1,5 @@
+package genetic.mutation;
+
+public enum MutationType {
+	UNDEFINED, SWAP, LOCALHILLCLIMBING, SCRAMBLE, SHIFT, INVERSION, INSERTION, DISPLACEMENT, ASSIGNED, 
+}
