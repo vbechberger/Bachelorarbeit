@@ -1,7 +1,0 @@
-package genetic.crossover.copy;
-
-public enum CrossoverType {
-
-	MODIFIED, ORDERBASED, ORDER, POSITIONBASED, PARTIALLYMAPPED, CYCLE;
-
-}

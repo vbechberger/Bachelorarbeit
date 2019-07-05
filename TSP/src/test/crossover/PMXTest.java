@@ -8,12 +8,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.Chromosome;
-import genetic.Simulation;
-import genetic.crossover.CrossoverType;
+import genetic.crossover.Crossover;
+import genetic.crossover.CrossoverPMX;
 
 public class PMXTest {
 	
-	private Simulation simulation;
+	private Crossover crossover;
 	//private Crossover crossover;
 	private static Chromosome c1;
 	private static Chromosome c2;
@@ -43,68 +43,68 @@ public class PMXTest {
 	@Test
 	public void testPMXKid1CutMiddle() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 2, 4);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 2, 4);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,3,5,6,4,2,7,8};
 		
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 		
 	}
 	
 	@Test
 	public void testPMXKid2CutMiddle() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 2, 4);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 2, 4);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,5,2,3,6,4,8,7};
 		
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 		
 	}
 	
 	@Test
 	public void testPMXKid1IndexEnd() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 5, 7);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 5, 7);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,4,2,5,6,3,8,7};
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 		
 	}
 	
 	@Test
 	public void testPMXKid2IndexEnd() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 5, 7);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 5, 7);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,3,6,4,5,7,8};
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 		
 	}
 	
 	@Test
 	public void testPMXKid1IndexStart() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 0, 2);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 0, 2);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,5,3,6,4,7,8};
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 		
 	}
 	
 	@Test
 	public void testPMXKid2IndexStart() {
 		
-		simulation = new Simulation(CrossoverType.PARTIALLYMAPPED, c1, c2, 0, 2);		
-		simulation.start();
+		crossover = new CrossoverPMX(c1, c2, 0, 2);		
+		crossover.start();
 		
 		int [] expected = new int[] {1,4,2,6,5,3,8,7};
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());		
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());		
 	}
 
 

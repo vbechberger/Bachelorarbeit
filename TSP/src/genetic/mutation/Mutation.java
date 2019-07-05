@@ -6,37 +6,33 @@ import util.SaveCopy;
 public abstract class Mutation {
 	
 	protected Chromosome mutant;
-	protected int[] kidGenes;
-	protected int index1 = -1;
-	protected int index2 = -1;
-	
+	protected int[] kidGenes;	
 	protected final int arrLength;
 	
-	public Mutation(Chromosome kid, int index1, int index2) {
+	public Mutation(Chromosome kid) {
 		arrLength = kid.getGenes().length;
 		kidGenes = new int[arrLength];
-		//TODO: do it random-till the length of array
-		this.index1 = index1;
-		this.index2 = index2;
-		SaveCopy.copy(kidGenes, kid.getGenes());
-		
-				
+		SaveCopy.copy(kidGenes, kid.getGenes());				
 	}
 	
 	public void start() {
-
-		if (index1 == -1 || index2 == -1) {
-			throw new IllegalStateException("The index is not given!");
+		
+		if (kidGenes.length == 0) {
+			throw new IllegalStateException("The array of genes of the kid's chromosome is empty!");
 		}
 
-		mutant = doMutation();
+		mutant = doMutation(kidGenes);
 		
 	}
 	
-	protected abstract Chromosome doMutation();
+	protected abstract Chromosome doMutation(int[] kidGenes);
 
 	public Chromosome getMutant() {
 		return mutant;
 	}
+	
+	
+	
+	
 	
 }

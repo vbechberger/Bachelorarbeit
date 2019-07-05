@@ -2,7 +2,7 @@ package genetic;
 
 import util.SaveCopy;
 
-public class Chromosome {
+public class Chromosome implements Comparable<Chromosome>{
 
 	// parameters
 
@@ -34,6 +34,32 @@ public class Chromosome {
 
 	public int[] getGenes() {
 		return genes;
+	}
+
+	
+	
+	/**
+	 * Compares two chromosomes according to their fitness value.
+	 * The chromosome with the greater fitness value 
+	 * is greater than the other one with the smaller fitness value.
+	 * 
+	 * @param o the other chromosome, with 
+	 * 			which we compare the actual chromosome
+	 * 
+	 * @param 1 if the actual chromosome has a greater fitness value than the other chromosome
+	 * 		 -1 if it has a smaller fitness value
+	 * 		  0 if both chromosomes have the equal fitness value	
+	 */
+	@Override
+	public int compareTo(Chromosome o) {
+		
+		if (this.getFitness() > o.getFitness()) {
+			return 1;			
+		} else if (this.getFitness() < o.getFitness()) {
+			return -1;
+		} else {
+			return 0;
+		}		
 	}
 
 }

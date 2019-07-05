@@ -5,12 +5,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.Chromosome;
-import genetic.Simulation;
-import genetic.crossover.CrossoverType;
+import genetic.crossover.Crossover;
+import genetic.crossover.CrossoverOX;
 import util.Printer;
 
 public class OXTest {
-	private Simulation simulation;
+	private Crossover crossover;
 	private static Chromosome c1;
 	private static Chromosome c2;
 
@@ -26,67 +26,67 @@ public class OXTest {
 	@Test
 	public void testOXMiddleKid1() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 2, 4);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 2, 4);
+		crossover.start();
 		
 		int [] expected = new int[] {2,3,5,6,4,7,8,1};
-		Printer.printArray(simulation.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 	}
 	
 	@Test
 	public void testOXMiddleKid2() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 2, 4);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 2, 4);
+		crossover.start();
 		
 		int [] expected = new int[] {5,4,2,3,6,8,7,1};
-		Printer.printArray(simulation.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 	}
 	
 	@Test
 	public void testOXEndKid1() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 5, 7);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 5, 7);
+		crossover.start();
 		
 		int [] expected = new int[] {1,4,2,6,5,3,8,7};
-		Printer.printArray(simulation.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 	}
 	
 	@Test
 	public void testOXEndKid2() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 5, 7);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 5, 7);
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,6,4,3,5,7,8};
-		Printer.printArray(simulation.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 	}
 	
 	@Test
 	public void testOXStartKid1() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 0, 2);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 0, 2);
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,5,3,6,7,8,4};
-		Printer.printArray(simulation.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 	}
 	
 	@Test
 	public void testOXStartKid2() {
 		
-		simulation = new Simulation(CrossoverType.ORDER, c1, c2, 0, 2);
-		simulation.start();
+		crossover = new CrossoverOX(c1, c2, 0, 2);
+		crossover.start();
 		
 		int [] expected = new int[] {1,4,2,6,3,8,7,5};
-		Printer.printArray(simulation.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 	}
 
 }

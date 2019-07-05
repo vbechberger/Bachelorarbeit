@@ -7,13 +7,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.Chromosome;
-import genetic.Simulation;
-import genetic.crossover.CrossoverType;
+import genetic.crossover.Crossover;
+import genetic.crossover.CrossoverPBX;
 import util.Printer;
 
 public class PBXTest {
 	
-	private Simulation simulation;
+	private Crossover crossover;
 	private static Chromosome c1;
 	private static Chromosome c2;
 	private static ArrayList<Integer> indices = new ArrayList<Integer>();
@@ -35,24 +35,24 @@ public class PBXTest {
 	@Test
 	public void testPBXKid1() {
 		
-		simulation = new Simulation(CrossoverType.POSITIONBASED, c1, c2, indices);
-		simulation.start();
+		crossover = new CrossoverPBX(c1, c2, indices);
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,5,6,4,3,7,8};
-		Printer.printArray(simulation.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 		
 	}
 
 	@Test
 	public void testPBXKid2() {
 		
-		simulation = new Simulation(CrossoverType.POSITIONBASED, c1, c2, indices);
-		simulation.start();
+		crossover = new CrossoverPBX(c1, c2, indices);
+		crossover.start();
 		
 		int [] expected = new int[] {1,4,2,3,6,5,8,7};
-		Printer.printArray(simulation.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 		
 	}
 }

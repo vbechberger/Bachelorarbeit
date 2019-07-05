@@ -1,7 +1,0 @@
-package genetic;
-
-public enum RepresentationType {
-	
-	PATH, ORDINAL, ADJACENCY, MATRIX;
-
-}

@@ -1,17 +1,16 @@
 package test.mutation;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.Chromosome;
-import genetic.Simulation;
-import genetic.mutation.MutationType;
+import genetic.mutation.Mutation;
+import genetic.mutation.MutationSwap;
 
 public class SwapTest {
 	
-	private Simulation simulation;
+	private Mutation mutation;;
 	private static Chromosome kid;
 	
 	
@@ -21,18 +20,67 @@ public class SwapTest {
 		kid = new Chromosome(tour);
 
 	}
+	
+	
 
 	
 	@Test
 	public void testSwap() {
 		
-		simulation = new Simulation(MutationType.SWAP, kid, 2, 4);		
-		simulation.start();
+		mutation = new MutationSwap(kid, 2, 4);		
+		mutation.start();
 		
 		int [] expected = new int[] {1,2,4,6,5,3,8,7};
 		
-		Assert.assertArrayEquals(expected, simulation.getMutant().getGenes());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenes());
 		
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex1NotSet() {
+		
+		mutation = new MutationSwap(kid, -1, 4);		
+		mutation.start();
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex2NotSet() {
+		
+		mutation = new MutationSwap(kid, 2, -1);		
+		mutation.start();
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex1OutOfBoundsLarge() {
+		
+		mutation = new MutationSwap(kid, 10, 4);		
+		mutation.start();
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex2OutOfBoundsLarge() {
+		
+		mutation = new MutationSwap(kid, 2, 10);		
+		mutation.start();
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex1OutOfBoundsSmall() {
+		
+		mutation = new MutationSwap(kid, -100, 4);		
+		mutation.start();
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSwapIndex2OutOfBoundsSmall() {
+		
+		mutation = new MutationSwap(kid, 2, -100);		
+		mutation.start();
+		
+	}
 }	

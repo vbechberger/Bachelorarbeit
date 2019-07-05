@@ -1,7 +1,0 @@
-package genetic;
-
-import CrossoverCutPoints;
-
-public abstract class CrossoverOneCutPoint extends CrossoverCutPoints {
-
-}

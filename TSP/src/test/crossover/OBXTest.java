@@ -7,12 +7,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import genetic.*;
-import genetic.crossover.CrossoverType;
+import genetic.crossover.Crossover;
+import genetic.crossover.CrossoverOBX;
 import util.*;
 
 public class OBXTest {
 	
-	private Simulation simulation;
+	private Crossover crossover;
 	
 	private static Chromosome c1;
 	private static Chromosome c2;
@@ -35,24 +36,24 @@ public class OBXTest {
 	@Test
 	public void testOBXKid1() {
 		
-		simulation = new Simulation(CrossoverType.ORDERBASED, c1, c2, indices);
-		simulation.start();
+		crossover = new CrossoverOBX(c1, c2, indices);
+		crossover.start();
 		
 		int [] expected = new int[] {1,5,2,4,6,3,7,8};
-		Printer.printArray(simulation.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid1().getGenes());
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
 		
 	}
 	
 	@Test
 	public void testOBXKid2() {
 		
-		simulation = new Simulation(CrossoverType.ORDERBASED, c1, c2, indices);
-		simulation.start();
+		crossover = new CrossoverOBX(c1, c2, indices);
+		crossover.start();
 		
 		int [] expected = new int[] {1,2,6,5,4,3,8,7};
-		Printer.printArray(simulation.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, simulation.getKid2().getGenes());
+		Printer.printArray(crossover.getKid2().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 		
 	}
 
