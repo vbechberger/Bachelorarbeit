@@ -1,0 +1,9 @@
+package genetic;
+
+public enum TSPType {
+
+	//TODO: to implement other types
+	EUCLIDEAN;
+
+}
+

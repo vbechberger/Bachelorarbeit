@@ -12,6 +12,20 @@ public class SaveCopy {
 	private static int length = 0;
 
 
+	public static void copy(double[][] arr1, double[][] arr2) {
+		if (arr2.length == 0) {
+			throw new RuntimeException("The second array is empty!");
+		}
+		
+		arr1 = new double[arr2.length][arr2[0].length];
+		length = arr2.length;
+		for (int i = 0; i < length; i++) {
+			for (int j = 0; j < length; j++) {
+				arr1[i][j] = arr2[i][j];
+			}
+		}
+	}
+	
 	public static void copy(int[] arr1, int[] arr2) {
 		if (arr1.length == 0) {
 			throw new RuntimeException("The first array is not initialized!");

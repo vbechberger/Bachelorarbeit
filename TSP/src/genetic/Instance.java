@@ -6,12 +6,20 @@ import java.util.Collections;
 import util.SaveCopy;
 
 public class Instance {
+	
+	//TODO:to change the type in constructor
+	protected TSPType type = TSPType.EUCLIDEAN;
 
 	private int size = -1;
+	
+	private double[][] distances;
 
+	
 	private ArrayList<Integer> tour = new ArrayList<Integer>();
 
 	public Instance() {
+		
+		
 		tour.add(0);
 		tour.add(5);
 		tour.add(1);
@@ -21,7 +29,8 @@ public class Instance {
 		this.size = tour.size();
 	}
 
-	public Instance(ArrayList<Integer> tour) {
+	public Instance(ArrayList<Integer> tour, double[][] distances) {
+		SaveCopy.copy(this.distances, distances);
 		SaveCopy.copy(this.tour, tour);
 		this.size = tour.size();
 		if (!isValid()) {
@@ -29,7 +38,8 @@ public class Instance {
 		}
 	}
 
-	public Instance(int[] tour) {
+	public Instance(int[] tour, double[][] distances) {
+		SaveCopy.copy(this.distances, distances);
 		SaveCopy.copy(this.tour, tour);
 		this.size = tour.length;
 		if (!isValid()) {
@@ -37,7 +47,8 @@ public class Instance {
 		}
 	}
 
-	public Instance(Chromosome chromosome) {
+	public Instance(Chromosome chromosome, double[][] distances) {
+		SaveCopy.copy(this.distances, distances);
 		SaveCopy.copy(tour, chromosome.getGenes());
 		this.size = tour.size();
 		if (!isValid()) {
@@ -86,5 +97,11 @@ public class Instance {
 	public ArrayList<Integer> getTour() {
 		return tour;
 	}
+
+	public double[][] getDistances() {
+		return distances;
+	}
+
+	
 
 }

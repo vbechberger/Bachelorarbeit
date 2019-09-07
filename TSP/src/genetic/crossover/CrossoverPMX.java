@@ -30,7 +30,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 
 		// handle the duplicates in kids:
 
-		// make sets with values between cuts
+		// make a set with the mapped values between cuts
 		HashSet<Integer> cut = new HashSet<Integer>();
 
 		// determine mapping relationship between cuts <->
@@ -42,25 +42,30 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 		}
 
 		/**
-		 * fill in the first kid from the rest of the second parent, /*taking
-		 * into account which values the first kid already has from /* the first
-		 * parent
+		 * fill in the first kid from the rest of the second parent, 
+		 * taking into account which values the first kid already has from 
+		 * the first parent
 		 */
 		for (int i = 0; i < cutPoint; i++) {
 
-			// if the value at index i is in mapping, i.e. is duplicated in the
-			// kid
+			// if the value at the index i is in the set of the mapped values, i.e. 
+			// it is already in the kid at some position between the cutting indices, 
+			// then it is duplicated in the
+			// kid and has to be replaced by a new value
 			if (cut.contains(arrKid[i])) {
+				//make sure the chosen mapped value is not duplicated as well
 				while (cut.contains(arrKid[i])) {
+					
+					//take the mapped value
 					arrKid[i] = mapping.get(arrKid[i]);
 				}
 			}
 		}
 
+		// make the same procedure for the part started from the second cut point
+		// till the end of the array
 		for (int i = cutPoint2 + 1; i < arrLength; i++) {
 
-			// if the value at index i is in mapping, i.e. is duplicated in the
-			// kid
 			if (cut.contains(arrKid[i])) {
 				while (cut.contains(arrKid[i])) {
 					arrKid[i] = mapping.get(arrKid[i]);

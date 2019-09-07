@@ -106,6 +106,36 @@ public class PMXTest {
 		int [] expected = new int[] {1,4,2,6,5,3,8,7};
 		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());		
 	}
-
+	
+	
+	@Test
+	public void testPMXKid1MultReplacement() {
+		
+		Chromosome c1 = new Chromosome(new int[] {0,5,1,2,4,3});
+		Chromosome c2 = new Chromosome(new int[] {1,2,5,4,3,0});
+		
+		
+		crossover = new CrossoverPMX(c1, c2, 1, 3);		
+		crossover.start();
+		
+		int [] expected = new int[] {4,5,1,2,3,0};
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
+		
+	}
+	
+	@Test
+	public void testPMXKid2MultReplacement() {
+		
+		Chromosome c1 = new Chromosome(new int[] {0,5,1,2,4,3});
+		Chromosome c2 = new Chromosome(new int[] {1,2,5,4,3,0});
+		
+		
+		crossover = new CrossoverPMX(c1, c2, 1, 3);		
+		crossover.start();
+		
+		int [] expected = new int[] {0,2,5,4,1,3};
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
+		
+	}
 
 }
