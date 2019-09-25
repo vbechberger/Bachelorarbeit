@@ -34,7 +34,7 @@ public class Chromosome implements Comparable<Chromosome>{
 		
 		this.fitness = -1;
 		
-		//TODO:to introduce other rypes of TSP
+		//TODO:to introduce other types of TSP
 		//calculateFitnessEuclidean();
 
 	}

@@ -81,7 +81,7 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		elements.put(startIndex, firstElemPar1);
 		
 		int elem = parent2[startIndex];
-		while(elem!= firstElemPar1) {			
+		while(elem != firstElemPar1) {			
 			int index = parent1List.indexOf(elem);
 			elements.put(index, elem);
 			
