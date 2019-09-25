@@ -1,11 +1,30 @@
 package genetic.crossover;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 
 import genetic.Chromosome;
 import util.SaveCopy;
 
+/**
+ * This class represents the order-based crossover.
+ * This operator randomly selects a subset of cities in 
+ * the first parent chromosome and puts them into the 
+ * offspring in the exactly the same order, in which these 
+ * cities occur in the first parent, but at the positions, 
+ * which these cities occupy in the second parent. 
+ * Each remaining position in the offspring is filled with 
+ * a city which occupies this position in the second parent.
+ * 
+ * Note that, for convenience of implementation, 
+ * this class gets in the constructor 
+ * not the subset of cities directly, but the subset of positions,
+ * which these cities occupy in the first parent.
+ * 
+ * @author valeriyabechberger
+ *
+ */
 public class CrossoverOBX extends CrossoverRandomIndices {
 
 	public CrossoverOBX(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
