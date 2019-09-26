@@ -41,7 +41,13 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 		for (int i = cutPoint2 + 1; i < arrLength; i++) {
 			if (!cut.contains(parent2[i])) {
 				arrKid[pos] = parent2[i];
-				pos++;
+				// if the tail part of the offspring is filled, start from the
+				// beginning
+				if (pos == arrLength - 1) {
+					pos = 0;
+				} else {
+					pos++;
+				}
 			}
 		}
 		for (int i = 0; i < cutPoint2 + 1; i++) {

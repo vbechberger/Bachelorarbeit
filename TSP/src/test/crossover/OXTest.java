@@ -88,5 +88,23 @@ public class OXTest {
 		Printer.printArray(crossover.getKid2().getGenes());
 		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
 	}
+	
+	//TODO:I do everything locally here, perhaps to optimize
+	@Test
+	public void testOXIfEndPar2NotInCutKid1() {
+		
+		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
+		Chromosome c1 = new Chromosome(tour1);
+		
+		int [] tour2 = new int[] {1,4,8,3,6,5,7,2};
+		Chromosome c2 = new Chromosome(tour2);
+		
+		Crossover crossover = new CrossoverOX(c1, c2, 2, 6);
+		crossover.start();
+		
+		int [] expected = new int[] {1,7,5,6,4,3,8,2};
+		Printer.printArray(crossover.getKid1().getGenes());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
+	}
 
 }
