@@ -16,9 +16,11 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 		
 		int[] arrKid = new int[arrLength];
 		
-		//set of the selected indices
+		//make a set of the selected indices, where the values(=positions of cities) 
+		//from given the array list will be copied.(to have the method - contains) 
 		HashSet<Integer> selectedIndices = new HashSet<Integer>();
-		//set of the cities of the first parent, which take the 
+		
+		//make a set of the cities of the first parent, which take the 
 		//positions according to the selected indices
 		HashSet<Integer> selectedValues = new HashSet<Integer>();
 		
