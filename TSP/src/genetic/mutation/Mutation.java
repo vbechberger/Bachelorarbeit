@@ -1,15 +1,19 @@
 package genetic.mutation;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 public abstract class Mutation {
 	
+	protected FitnessFunction fitnessFct;
 	protected Chromosome mutant;
 	protected int[] kidGenes;	
 	protected final int arrLength;
 	
-	public Mutation(Chromosome kid) {
+	public Mutation(FitnessFunction fitnessFct, Chromosome kid) {
+		//TODO:perhaps via setFct
+		this.fitnessFct = fitnessFct;
 		arrLength = kid.getGenes().length;
 		kidGenes = new int[arrLength];
 		SaveCopy.copy(kidGenes, kid.getGenes());				

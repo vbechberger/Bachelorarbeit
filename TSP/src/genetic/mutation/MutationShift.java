@@ -2,6 +2,7 @@ package genetic.mutation;
 
 import java.util.ArrayList;
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 /**
@@ -17,8 +18,8 @@ public class MutationShift extends Mutation {
 	private int symbol = -1;
 	private int stepsNumber = -1;
 
-	public MutationShift(Chromosome kid, int symbol, int stepsNumber) {
-		super(kid);
+	public MutationShift(FitnessFunction fitnessFct, Chromosome kid, int symbol, int stepsNumber) {
+		super(fitnessFct, kid);
 		setSymbol(symbol);
 		setStepsNumber(stepsNumber);		
 	}
@@ -42,7 +43,7 @@ public class MutationShift extends Mutation {
 		//copy the result back to the kid array
 		SaveCopy.copy(kidGenes, temp);
 		
-		return new Chromosome(kidGenes);
+		return new Chromosome(fitnessFct, kidGenes);
 	}
 	
 	

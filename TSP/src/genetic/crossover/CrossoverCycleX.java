@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 /**
@@ -16,8 +17,10 @@ import util.SaveCopy;
 public class CrossoverCycleX extends CrossoverCycleSubset {
 	
 
-	public CrossoverCycleX(Chromosome firstParent, Chromosome secondParent) {
-		super(firstParent, secondParent);
+	public CrossoverCycleX(FitnessFunction fitnessFct, 
+							Chromosome firstParent, 
+							Chromosome secondParent) {
+		super(fitnessFct, firstParent, secondParent);
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
@@ -30,7 +33,7 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		//return the first parent
 		if(cycle == null) {
 			SaveCopy.copy(arrKid, parent1);
-			return new Chromosome(arrKid);
+			return new Chromosome(fitnessFct, arrKid);
 		}
 		
 		
@@ -49,7 +52,7 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 			} 
 		}
 		
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 	}
 	
 	private HashMap<Integer, Integer> findCycle(int[] parent1, int[] parent2) {

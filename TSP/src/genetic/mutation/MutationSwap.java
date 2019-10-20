@@ -1,6 +1,7 @@
 package genetic.mutation;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 
 /**
@@ -16,8 +17,8 @@ public class MutationSwap extends Mutation {
 	private int index1 = -1;
 	private int index2 = -1;
 
-	public MutationSwap(Chromosome kid, int index1, int index2) {
-		super(kid);
+	public MutationSwap(FitnessFunction fitnessFct, Chromosome kid, int index1, int index2) {
+		super(fitnessFct, kid);
 		setIndex1(index1);
 		setIndex2(index2);
 		
@@ -31,7 +32,7 @@ public class MutationSwap extends Mutation {
 		kidGenes[index1] = tempValue2;
 		kidGenes[index2] = tempValue1;
 		
-		return new Chromosome(kidGenes);
+		return new Chromosome(fitnessFct, kidGenes);
 		
 	}
 	

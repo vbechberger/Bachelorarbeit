@@ -1,10 +1,12 @@
 package genetic.crossover;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 public abstract class Crossover {
 
+	protected FitnessFunction fitnessFct;
 	protected Chromosome kid1;
 	protected Chromosome kid2;
 	protected int[] parent1;
@@ -12,8 +14,11 @@ public abstract class Crossover {
 
 	protected final int arrLength;
 
-	public Crossover(Chromosome firstParent, Chromosome secondParent) {
-
+	public Crossover(FitnessFunction fitnessFct, 
+					 Chromosome firstParent, 
+					 Chromosome secondParent) {
+		//TODO:perhaps via setFct
+		this.fitnessFct = fitnessFct;
 		arrLength = firstParent.getGenes().length;
 		parent1 = new int[arrLength];
 		parent2 = new int[arrLength];

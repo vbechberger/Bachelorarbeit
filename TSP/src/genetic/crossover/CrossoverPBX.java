@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public class CrossoverPBX extends CrossoverRandomIndices {
 
-	public CrossoverPBX(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
-		super(firstParent, secondParent, indices);
+	public CrossoverPBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 			nextIndexPar2++;
 		}
 		
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 	}
 
 }

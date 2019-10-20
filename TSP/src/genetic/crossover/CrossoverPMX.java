@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public class CrossoverPMX extends CrossoverTwoCutPoints {
 
-	public CrossoverPMX(Chromosome firstParent, Chromosome secondParent, int cutPoint1, int cutPoint2) {
-		super(firstParent, secondParent, cutPoint1, cutPoint2);
+	public CrossoverPMX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, int cutPoint1, int cutPoint2) {
+		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
@@ -74,7 +75,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 
 		}
 
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 
 	}
 

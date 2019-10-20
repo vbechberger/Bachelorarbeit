@@ -3,12 +3,16 @@ package genetic.crossover;
 import java.util.HashSet;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 public class CrossoverModifiedX extends CrossoverCutPoint {
 
-	public CrossoverModifiedX(Chromosome firstParent, Chromosome secondParent, int cutPoint) {
-		super(firstParent, secondParent, cutPoint);
+	public CrossoverModifiedX(FitnessFunction fitnessFct, 
+								Chromosome firstParent, 
+								Chromosome secondParent, 
+								int cutPoint) {
+		super(fitnessFct, firstParent, secondParent, cutPoint);
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 			}
 		}
 
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 	}
 
 }

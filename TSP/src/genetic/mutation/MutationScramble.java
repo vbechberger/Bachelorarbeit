@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public class MutationScramble extends Mutation {
 	
@@ -13,8 +14,8 @@ public class MutationScramble extends Mutation {
 	private int index2 = -1;
 	
 
-	public MutationScramble(Chromosome kid, int index1, int index2) {
-		super(kid);
+	public MutationScramble(FitnessFunction fitnessFct, Chromosome kid, int index1, int index2) {
+		super(fitnessFct, kid);
 		setIndex1(index1);
 		setIndex2(index2);
 	}
@@ -35,7 +36,7 @@ public class MutationScramble extends Mutation {
 			kidGenes[i] = shuffled.get(i - index1);
 		}
 				
-		return new Chromosome(kidGenes);
+		return new Chromosome(fitnessFct, kidGenes);
 	}
 	
 	

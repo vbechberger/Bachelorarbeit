@@ -1,12 +1,16 @@
 package genetic.crossover;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public abstract class CrossoverCutPoint extends Crossover {
 	protected int cutPoint = -1;
 
-	public CrossoverCutPoint(Chromosome firstParent, Chromosome secondParent, int cutPoint) {
-		super(firstParent, secondParent);
+	public CrossoverCutPoint(FitnessFunction fitnessFct, 
+							Chromosome firstParent, 
+							Chromosome secondParent, 
+							int cutPoint) {
+		super(fitnessFct, firstParent, secondParent);
 		this.cutPoint = cutPoint;
 	}
 

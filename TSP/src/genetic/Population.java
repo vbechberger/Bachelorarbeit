@@ -13,28 +13,21 @@ public class Population {
 	final int MIN_SIZE = 5;
 	int size;
 
-	public Population(int size) {
+	public Population(int size, FitnessFunction fitnessFct) {
 		setSize(size);
+		init(fitnessFct);
 	}
 
 	/**
 	 * Initializes the population, creating the generation #0
 	 */
-	public void init() {
+	public void init(FitnessFunction fitnessFct) {
 		
-		Chromosome one = new Chromosome(new int[]{1,2,3,4,5,6,7,8});
-		population.add(one);
-		
-		Chromosome two = new Chromosome(new int[]{8,7,6,5,4,3,2,1});
-		population.add(two);
-		
-		Chromosome three = new Chromosome(new int[]{5,4,3,2,1,8,7,6});
-		population.add(three);
-		
-		Chromosome four = new Chromosome(new int[]{5,6,7,8,1,2,3,4});
-		population.add(four);
-		
-		
+		int step = 0;
+		while (step < this.size) {
+			Chromosome chromosome = new Chromosome(fitnessFct);
+			population.add(chromosome);
+		}		
 	}
 	
 	

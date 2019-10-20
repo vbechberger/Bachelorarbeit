@@ -1,11 +1,14 @@
 package genetic.crossover;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public abstract class CrossoverCycleSubset extends Crossover {
 
-	public CrossoverCycleSubset(Chromosome firstParent, Chromosome secondParent) {
-		super(firstParent, secondParent);
+	public CrossoverCycleSubset(FitnessFunction fitnessFct, 
+								Chromosome firstParent, 
+								Chromosome secondParent) {
+		super(fitnessFct, firstParent, secondParent);
 	}
 
 	

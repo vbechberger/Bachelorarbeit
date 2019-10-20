@@ -1,6 +1,8 @@
 package genetic;
 
-import util.Printer;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import util.SaveCopy;
 
 public class Chromosome implements Comparable<Chromosome>{
@@ -9,59 +11,39 @@ public class Chromosome implements Comparable<Chromosome>{
 
 	private final double fitness;
 	private int[] genes;
-
-	public Chromosome(Instance instance) {
-		genes = new int[instance.getTour().size()];
-		SaveCopy.copy(genes, instance.getTour());
-		if (instance.type == TSPType.EUCLIDEAN) {
-			this.fitness = calculateFitnessEuclidean(instance.getDistances());
-		} else {
-			Printer.printString("other types of TSP are not implemented");
-			this.fitness = -1;
-		}
+	private FitnessFunction fitnessFct = null;
 	
-
+	/**
+	 * Makes a new chromosome object, according to the
+	 * given dimension (which is defined by the given
+	 * fitness function). There will be produced a random
+	 * permutation of the genes as a default variant,
+	 * and the fitness value of
+	 * chromosomes will be calculated (defined by the given
+	 * fitness function).
+	 * @param fitnessFct a fitness function which defines the way
+	 * 						how the fitness is to be calculated
+	 */
+	public Chromosome(FitnessFunction fitnessFct) {
+		this(fitnessFct, null);
 	}
 
-	/** Is used only for tests!!!!!
-	 * TODO: ELIMINATE THIS CONSTRUCTOR
+
+	/** 
+	 * Makes a chromosome object,
+	 * where the genes are defined by the given sequence if integers
+	 * The fitness value of
+	 * chromosomes will be also calculated (defined by the given
+	 * fitness function).
 	 * 
 	 * @param numbers
 	 */
-	public Chromosome(int[] numbers) {
-		genes = new int[numbers.length];
-		SaveCopy.copy(genes, numbers);
-		
-		this.fitness = -1;
-		
-		//TODO:to introduce other types of TSP
-		//calculateFitnessEuclidean();
+	public Chromosome(FitnessFunction fitnessFct, int[] tour) {
+		setFitnessFct(fitnessFct);
+		setGenes(tour);
+		this.fitness = fitnessFct.calcFitness(genes);
 
 	}
-
-	private double calculateFitnessEuclidean(double[][] distances) {
-		System.out.println("calculate Fitness is to implement!");
-		
-		double sum = 0;
-		
-		for (int i = 0; i < genes.length - 1; i++) {
-			int start = genes[i];
-			int end = genes[i + 1];
-			sum = sum + distances[start][end];
-		}
-		
-		int start = genes[genes.length - 1];
-		int end = genes[0];
-		sum = sum + distances[start][end];	
-		
-		if (sum <= 0) {
-			throw new IllegalStateException("The distance of "
-					+ "tour is smaller or equal than 0!");
-		}
-		
-		return sum;
-	}
-	
 
 
 	public double getFitness() {
@@ -71,13 +53,54 @@ public class Chromosome implements Comparable<Chromosome>{
 	public int[] getGenes() {
 		return genes;
 	}
+	
+	public FitnessFunction getFitnessFct() {
+		return fitnessFct;
+	}
+	
+	private void setFitnessFct(FitnessFunction fitnessFct) {
+		if(fitnessFct == null) {
+			throw new IllegalStateException("Fitness function is not defined!");	
+		}
+		this.fitnessFct = fitnessFct;
+	}
 
+	
+	private void setGenes() {
+		genes = new int[fitnessFct.getDimention()];
+		
+		ArrayList<Integer> tempTour = new ArrayList<Integer>();
+
+		//random permutation of the cities
+		//according to the dimension
+		for (int i = 0; i < this.fitnessFct.getDimention(); i++) {
+			tempTour.add(Integer.valueOf(i));			
+		}
+
+		Collections.shuffle(tempTour);
+		SaveCopy.copy(genes, tempTour);
+	}
+	
+	
+	private void setGenes(int[] tour) {
+		
+		if(tour == null) {
+			setGenes();
+			return;
+		}
+		
+		if (tour.length != fitnessFct.getDimention()) {
+			throw new IllegalStateException("Dimension size is inconsistent.");			
+		}
+		genes = new int[tour.length];
+		SaveCopy.copy(genes, tour);
+	}
 	
 	
 	/**
 	 * Compares two chromosomes according to their fitness value.
 	 * The chromosome with the greater fitness value 
-	 * is greater than the other one with the smaller fitness value.
+	 * is fitter than the other one with the smaller fitness value.
 	 * 
 	 * @param o the other chromosome, with 
 	 * 			which we compare the actual chromosome
@@ -97,5 +120,6 @@ public class Chromosome implements Comparable<Chromosome>{
 			return 0;
 		}		
 	}
+	
 
 }

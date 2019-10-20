@@ -3,11 +3,15 @@ package genetic.crossover;
 import java.util.HashSet;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 
 public class CrossoverLOX extends CrossoverTwoCutPoints {
 
-	public CrossoverLOX(Chromosome firstParent, Chromosome secondParent, int cutPoint1, int cutPoint2) {
-		super(firstParent, secondParent, cutPoint1, cutPoint2);
+	public CrossoverLOX(FitnessFunction fitnessFct, 
+						Chromosome firstParent, 
+						Chromosome secondParent, 
+						int cutPoint1, int cutPoint2) {
+		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
@@ -16,7 +20,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		//if the cut interval includes the whole chromosome,
 		//return the first parent
 		if ((cutPoint == 0) && (cutPoint2 == (arrLength - 1))) {
-			return new Chromosome(parent1);
+			return new Chromosome(fitnessFct, parent1);
 		}
 		
 		int[] arrKid = new int[arrLength];
@@ -67,7 +71,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		}
 
 		
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 	}
 
 }

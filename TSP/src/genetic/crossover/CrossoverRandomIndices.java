@@ -3,14 +3,15 @@ package genetic.crossover;
 import java.util.ArrayList;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 public abstract class CrossoverRandomIndices extends CrossoverCycleSubset {
 	
 	protected ArrayList<Integer> indices = new ArrayList<Integer>();
 
-	public CrossoverRandomIndices(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
-		super(firstParent, secondParent);
+	public CrossoverRandomIndices(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+		super(fitnessFct, firstParent, secondParent);
 		SaveCopy.copy(this.indices, indices);
 
 	}

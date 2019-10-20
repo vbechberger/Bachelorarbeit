@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import genetic.Chromosome;
+import genetic.FitnessFunction;
 import util.SaveCopy;
 
 /**
@@ -27,8 +28,8 @@ import util.SaveCopy;
  */
 public class CrossoverOBX extends CrossoverRandomIndices {
 
-	public CrossoverOBX(Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
-		super(firstParent, secondParent, indices);
+	public CrossoverOBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
@@ -64,7 +65,7 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 			arrKid[indicesInParent2.get(i)] = selected[i];
 		}
 
-		return new Chromosome(arrKid);
+		return new Chromosome(fitnessFct, arrKid);
 
 	}
 
