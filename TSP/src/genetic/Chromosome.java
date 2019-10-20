@@ -1,5 +1,6 @@
 package genetic;
 
+import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -60,7 +61,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	
 	private void setFitnessFct(FitnessFunction fitnessFct) {
 		if(fitnessFct == null) {
-			throw new IllegalStateException("Fitness function is not defined!");	
+			throw new NullPointerException("Fitness function is not defined!");	
 		}
 		this.fitnessFct = fitnessFct;
 	}
@@ -121,5 +122,23 @@ public class Chromosome implements Comparable<Chromosome>{
 		}		
 	}
 	
+	@Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Chromosome chromosome = (Chromosome) obj;
+        
+        return chromosome.fitness == this.fitness;
+    }
+	
+	@Override
+    public int hashCode() {
+        return Objects.hash(fitness);
+    }
 
 }
