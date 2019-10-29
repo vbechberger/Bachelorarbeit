@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Population {
 	
-	List<Chromosome> population = new ArrayList<Chromosome>();
+	private List<Chromosome> population = new ArrayList<Chromosome>();
 
 	// general parameters
 
@@ -40,7 +40,7 @@ public class Population {
 	 *  @param fitnessFct the given fitness function,
 	 *  					which is needed to create chromosomes.
 	 */
-	public void init(FitnessFunction fitnessFct) {
+	private void init(FitnessFunction fitnessFct) {
 		
 		int step = 0;
 		while (step < this.size) {
@@ -59,7 +59,7 @@ public class Population {
 		return this.size;
 	}
 
-	void setSize(int size) {
+	private void setSize(int size) {
 		if (size < MIN_SIZE) {
 			throw new IllegalArgumentException(
 					"The size of the population " + "has to be greater than " + MIN_SIZE + " !");
@@ -120,6 +120,20 @@ public class Population {
 		/**Sort the population based on the fitness value of chromosomes 
 		 * with the fittest ones at the beginning*/
 		Collections.sort(population, Collections.reverseOrder());
+	}
+	
+	public Chromosome getBestFitChromosome() {
+		if (population.size() <= 1) {
+			throw new IllegalStateException("The population is too small!");
+		}
+		return population.get(0);
+	}
+	
+	public Chromosome getSecondFitChromosome() {
+		if (population.size() <= 1) {
+			throw new IllegalStateException("The population is too small!");
+		}
+		return population.get(1);
 	}
 
 }

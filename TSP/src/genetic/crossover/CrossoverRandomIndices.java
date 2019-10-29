@@ -1,25 +1,25 @@
 package genetic.crossover;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
-import util.SaveCopy;
 
 public abstract class CrossoverRandomIndices extends CrossoverCycleSubset {
 	
-	protected ArrayList<Integer> indices = new ArrayList<Integer>();
+	protected Set<Integer> indices = new HashSet<Integer>();
 
-	public CrossoverRandomIndices(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+	public CrossoverRandomIndices(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent);
-		SaveCopy.copy(this.indices, indices);
+		this.indices = indices;//TODO:Save copy? actually i do not change the set
 
 	}
 
 	public void start() {
 
-		if (indices == null || indices.size() == 0) {
-			throw new IllegalStateException("The indezes are not chosen!");
+		if (indices == null || indices.isEmpty()) {
+			throw new IllegalStateException("The indices are not chosen!");
 		}
 
 		kid1 = doCrossover(parent1, parent2);

@@ -8,7 +8,9 @@ import genetic.FitnessFunction;
 
 public class CrossoverPMX extends CrossoverTwoCutPoints {
 
-	public CrossoverPMX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, int cutPoint1, int cutPoint2) {
+	public CrossoverPMX(FitnessFunction fitnessFct, 
+						Chromosome firstParent, Chromosome secondParent, 
+						int cutPoint1, int cutPoint2) {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 

@@ -1,14 +1,14 @@
 package genetic.crossover;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
 
 public class CrossoverPBX extends CrossoverRandomIndices {
 
-	public CrossoverPBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+	public CrossoverPBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
@@ -16,10 +16,6 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
 		
 		int[] arrKid = new int[arrLength];
-		
-		//make a set of the selected indices, where the values(=positions of cities) 
-		//from given the array list will be copied.(to have the method - contains) 
-		HashSet<Integer> selectedIndices = new HashSet<Integer>();
 		
 		//make a set of the cities of the first parent, which take the 
 		//positions according to the selected indices
@@ -31,9 +27,6 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 		
 		for(Integer index: indices) {
 			arrKid[index] = parent1[index];
-			
-			//remember the selected indices
-			selectedIndices.add(index);
 			
 			//remember the cities, which were found at the selected positions in the 
 			//first parent	
@@ -48,7 +41,7 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 			
 			//jump over the indices in the kid which were already filled in with
 			//the values from the first parent
-			while (selectedIndices.contains(i)) {
+			while (indices.contains(i)) {
 				i++;
 			}
 			

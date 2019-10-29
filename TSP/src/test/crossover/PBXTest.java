@@ -1,6 +1,7 @@
 package test.crossover;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -18,7 +19,7 @@ public class PBXTest {
 	private Crossover crossover;
 	private static Chromosome c1;
 	private static Chromosome c2;
-	private static ArrayList<Integer> indices = new ArrayList<Integer>();
+	private static Set<Integer> indices = new HashSet<Integer>();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

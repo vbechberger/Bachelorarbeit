@@ -3,6 +3,7 @@ package genetic.crossover;
 import java.util.ArrayList;
 
 import java.util.Collections;
+import java.util.Set;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
@@ -28,7 +29,7 @@ import util.SaveCopy;
  */
 public class CrossoverOBX extends CrossoverRandomIndices {
 
-	public CrossoverOBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, ArrayList<Integer> indices) {
+	public CrossoverOBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
@@ -43,10 +44,11 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 		// preserving the order
 		int[] selected = new int[indices.size()];
 
-		for (int i = 0; i < selected.length; i++) {
-			selected[i] = parent1[indices.get(i)];
+		int count = 0;
+		for(Integer index: indices) {
+			selected[count] = parent1[index];
+			count++;
 		}
-
 		// find at which indices these elements stand in the second parent
 		ArrayList<Integer> parent2List = new ArrayList<Integer>();
 

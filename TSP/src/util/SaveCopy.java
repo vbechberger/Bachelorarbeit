@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Makes deep copy of the arrays
@@ -78,4 +79,15 @@ public class SaveCopy {
 			}
 		}
 	}
+	/*public static HashSet<Integer> copy(HashSet<Integer> set) {
+		if(set != null) {
+			if(set.isEmpty()) {
+				throw new RuntimeException("The set to be copied is empty!");
+			}
+			HashSet<Integer> copiedSet = new HashSet<Integer>();
+			copiedSet.addAll(set);
+			
+		}
+	}*/
+	
 }
