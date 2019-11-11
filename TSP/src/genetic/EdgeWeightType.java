@@ -1,5 +1,17 @@
 package genetic;
 
+import genetic.distancefct.ATTDistanceFct;
+import genetic.distancefct.Ceil2DDistancefct;
+import genetic.distancefct.Euc2DDistanceFct;
+import genetic.distancefct.GeoDistanceFct;
+
+/**
+ * This class represents an edge weight type,
+ * which defines which type of distance function will be used.
+ * 
+ * @author valeriyabechberger
+ *
+ */
 public enum EdgeWeightType {
 
 	/**
@@ -21,24 +33,33 @@ public enum EdgeWeightType {
 	/**
 	 * Weights are given explicitly
 	 */
-	EXPLICIT, 
+	
+	EXPLICIT,
+	
 	
 	/**
 	 * Weights in 2D Euclidean distances which rounded up.
 	 */
 	CEIL_2D;
-	
-	public NodeCoordType getNodeCoordType() {
-		switch (this) {
-		case EUC_2D:
-		case CEIL_2D:
-		case GEO:
-		case ATT:
-			return NodeCoordType.COORDS_2D;
+
+	public DistTableFiller getDistTableFiller() {
+		switch(this) {
+		
+		case EUC_2D: return new Euc2DDistanceFct();
+		case GEO: return new GeoDistanceFct();
+		case ATT: return new ATTDistanceFct();
+		//case EXPLICIT: new ExplicitDistances(edgeWeightFormat);
+		case CEIL_2D:	return new Ceil2DDistancefct();
 		
 		default:
 			throw new IllegalArgumentException(
-					"the node coordinate type is not defined for " + this);
+					"the distance function is not defined for " + this);
+			
 		}
+		
 	}
+	
+	
+
+	
 }

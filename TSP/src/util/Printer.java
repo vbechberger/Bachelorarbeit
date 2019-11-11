@@ -6,10 +6,10 @@ import java.util.HashSet;
 
 public class Printer {
 
-	public static void printArray(int [] array) {
+	public static void printArray(int[] distances) {
 		 System.out.println("Array of integers: ");		 
-		 for(int i = 0; i < array.length; i++) {			
-			 System.out.print(" " + array[i] + " ");
+		 for(int i = 0; i < distances.length; i++) {			
+			 System.out.print(" " + distances[i] + " ");
 		 }
 		 System.out.println();
 	}
@@ -72,5 +72,13 @@ public class Printer {
 		 }
 		 System.out.println();
 		 
+	}
+
+	public static void printArray(double [] array) {
+		 System.out.println("Array of doubles: ");		 
+		 for(int i = 0; i < array.length; i++) {			
+			 System.out.print(" " + array[i] + " ");
+		 }
+		 System.out.println();
 	}
 }

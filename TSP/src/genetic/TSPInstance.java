@@ -1,8 +1,5 @@
 package genetic;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class TSPInstance {
 	
 	private String name;	
@@ -17,37 +14,36 @@ public class TSPInstance {
 	
 	private DistanceTable distanceTable;
 	
-	private int[][] coordinates;
 
 	public TSPInstance(String name, String comment, InstanceType type,
-						int dimension, int[][] coordinates, EdgeWeightType edgeWeightType) {
+						int dimension, double[][] data, EdgeWeightType edgeWeightType) {
 		this.name = name;
 		this.comment = comment;
 		this.type = type;
 		setDimension(dimension);
-		this.coordinates = coordinates;
 		this.edgeWeightType = edgeWeightType;
-		distanceTable = new DistanceTable(this.coordinates, this.dimension);
+		if(edgeWeightType.equals(EdgeWeightType.EXPLICIT)) {
+			distanceTable = new DistanceTable(data, this.dimension);;
+			distanceTable.printFirstCol();
+		} else {
+			distanceTable = new DistanceTable(edgeWeightType.getDistTableFiller(), data, this.dimension);
+		
+		}
+		
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	/**Getter methods*/
@@ -67,11 +63,6 @@ public class TSPInstance {
 	public int getDimension() {
 		return dimension;
 	}
-	
-	public int[][] getCoordinates() {
-		return coordinates;
-	}
-
 
 	public EdgeWeightType getEdgeWeightType() {
 		return edgeWeightType;
@@ -101,10 +92,6 @@ public class TSPInstance {
 			throw new IllegalArgumentException("The dimension has to be positive!");			
 		}
 		this.dimension = dimension;
-	}
-	
-	public void setCoordinates(int[][] coordinates) {
-		this.coordinates = coordinates;
 	}
 
 	public void setEdgeWeightType(EdgeWeightType edgeWeightType) {

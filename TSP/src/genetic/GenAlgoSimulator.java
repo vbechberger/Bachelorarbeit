@@ -112,6 +112,7 @@ public class GenAlgoSimulator {
 			}
 			generationsNumber++;
 		
+			//TODO:Selection
 		}
 		
 		
