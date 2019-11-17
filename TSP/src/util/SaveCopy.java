@@ -1,6 +1,10 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Makes deep copy of the arrays
@@ -47,32 +51,53 @@ public class SaveCopy {
 		}
 	}
 	
-	public static void copy(int[] arr1, ArrayList<Integer> arr2) {
+	public static void copy(int[] arr, List<Integer> list) {
 	
-		if(arr1.length != arr2.size()) {
+		if(arr.length != list.size()) {
 			throw new RuntimeException("The arrays have the different length!");
 		}
 		
-		if (arr2.size() == 0) {
+		if (list.size() == 0) {
 			throw new RuntimeException("The second array is empty!");
 		}
 		
-		length = arr2.size();
+		length = list.size();
 		for (int i = 0; i < length; i++) {
-			arr1[i] = arr2.get(i);
+			arr[i] = list.get(i);
 		}
 	}
 	
-	public static void copy(ArrayList<Integer> arr1, int[] arr2) {
-		if(arr2.length == 0) {
+	/*public static void copy(int[] arr1, Deque<Integer> deque) {
+		
+		if(arr1.length != deque.size()) {
+			throw new RuntimeException("The arrays have the different length!");
+		}
+		
+		if (deque.size() == 0) {
 			throw new RuntimeException("The second array is empty!");
 		}
-		if(arr1.size() > arr2.length) {
+		
+		length = deque.size();
+		
+		// Call iterator() method of Deque 
+        Iterator<Integer> it = deque.iterator(); 
+  
+		for (int i = 0; i < length; i++) {
+			arr1[i] = it.next();
+		}
+	}*/
+	
+	
+	public static void copy(List<Integer> list, int[] arr) {
+		if(arr.length == 0) {
+			throw new RuntimeException("The second array is empty!");
+		}
+		if(list.size() > arr.length) {
 			throw new RuntimeException("The first array list is longer than the second array!");
 		}
-		length = arr2.length;
+		length = arr.length;
 		for (int i = 0; i < length; i++) {
-			arr1.add(i, arr2[i]);
+			list.add(i, arr[i]);
 		}
 	}
 	public static void copy(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {

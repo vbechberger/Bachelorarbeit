@@ -1,9 +1,5 @@
 package heuristics;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import genetic.DistanceTable;
 
 /**
  * Represents a nearest-neighbor heuristic, 
@@ -15,46 +11,16 @@ import genetic.DistanceTable;
  * @author valeriyabechberger
  *
  */
-public class NearestNeighbor {
-	
-	private int startCityNumber;
-	private double[][] distances;
-	private int[] tour;
-	private Set<Integer> usedCities = new HashSet<Integer>();;
+public class NearestNeighbor extends NeighborHeuristic{
 
 	public NearestNeighbor(double[][] distances, int startCityNumber) {
-		
-		
-		setDistances(distances);
-		setStartCityNumber(startCityNumber);
-		tour = new int[distances.length];
-		tour = findTour(startCityNumber);
-	}
-	
-	private void setStartCityNumber(int startCityNumber) {
-		if(startCityNumber < 0 || startCityNumber >= distances.length) {
-			throw new IllegalArgumentException("the start city "
-					+ "has illegal index: " + startCityNumber);
-		}
-		this.startCityNumber = startCityNumber;
-		
-	}
-
-	private void setDistances(double[][] distances) {
-		if (distances.length != distances[0].length) {
-			throw new IllegalArgumentException("the matrix "
-					+ "with distances has to be quadratic.");
-		}
-		this.distances = distances;
-		
+		super(distances, startCityNumber);
 	}
 
 	/**
-	 * Finds a tour, starting with the city 0(Greedy)
-	 * @param startCityNumber 
-	 * @param distanceTable
+	 * Finds a tour, starting with the predefined city (Greedy)
 	 */
-	private int[] findTour(int startCityNumber) {
+	protected void findTour() {
 		tour[0] = startCityNumber;
 		usedCities.add(startCityNumber);
 		 
@@ -76,40 +42,7 @@ public class NearestNeighbor {
 			lastVisitedCity = nextCity;
 			
 			count++;
-		}
-		
-		return tour;
-		
+		}	
 	}
 
-	private int findTheNearestCityTo(int cityNumber) {
-		
-		double minimum = Double.MAX_VALUE;
-		int nearestCity = cityNumber;
-		for(int j = 0; j < distances.length; j++) {
-			//do not consider the distance between the given city itself
-			//and the distances to the cities which 
-			//were already used
-			if(j != cityNumber && !usedCities.contains(j)) {
-				
-				double nextDistance = distances[cityNumber][j];
-			
-				if(nextDistance < minimum && nextDistance != 0) {
-					minimum = nextDistance;
-					nearestCity = j;
-				}
-			}
-			
-		}
-		return nearestCity;
-	}
-
-	/**
-	 * Returns a solution tour
-	 */
-	public int[] getTour() {
-		
-		return this.tour;
-		
-	}
 }

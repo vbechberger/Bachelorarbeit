@@ -1,6 +1,5 @@
 package genetic;
 
-import util.Printer;
 import util.SaveCopy;
 
 public class DistanceTable extends FitnessFunction{
