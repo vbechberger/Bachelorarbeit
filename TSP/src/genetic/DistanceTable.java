@@ -37,6 +37,10 @@ public class DistanceTable extends FitnessFunction{
 	public double[][] getDistances() {
 		return distances;
 	}
+	
+	public double getDistanceBtwCities(int firstCity, int secCity) {
+		return distances[firstCity][secCity];
+	}
 
 	private double calcDistanceOfTour(int[] tour) {
 		

@@ -20,6 +20,8 @@ public class Simulator {
 	
 	private static void loadFile(String fileName) {
 		
+		//File[] fileArray = f.listFiles();
+		
 		File file = new File(fileName);
 		
 		if (!file.canRead() || !file.isFile()) {
