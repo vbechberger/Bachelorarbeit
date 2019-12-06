@@ -1,12 +1,14 @@
 package heuristics;
 
 import java.util.LinkedList;
+
+import util.Pair;
 import util.SaveCopy;
 
-public class DoubleNearestNeighbor extends NeighborHeuristic{
+public class DoubleNearestNeighbor extends ConstructionHeuristic{
 	
 	public DoubleNearestNeighbor(double[][] distances, int startCityNumber) {
-		super(distances, startCityNumber);
+		super(distances, startCityNumber, new NearestStrategy());
 	}
 
 	@Override
@@ -32,15 +34,17 @@ public class DoubleNearestNeighbor extends NeighborHeuristic{
 		int nextCity = startCityNumber;
 		//count how many cities are already in the tour
 		int count = 1;
-		while(count < tour.length) {
+		while(count < resultingTour.length) {
 			
 			/*find the city which is the nearest to the
 			 * city, which was visited first*/
-			int cityNearestToFirstCity = findTheNearestCityTo(firstCityOfTour);
+			Pair<Integer, Double> cityAndDist1 = findOptNeighborAndDistTo(firstCityOfTour);
+			int cityNearestToFirstCity = cityAndDist1.getFirst();
 			
 			/*find the city which is the nearest to the
 			 * city, which was visited last*/
-			int cityNearestToLastCity = findTheNearestCityTo(lastCityOfTour);
+			Pair<Integer, Double> cityAndDist2 = findOptNeighborAndDistTo(lastCityOfTour);
+			int cityNearestToLastCity = cityAndDist2.getFirst();
 			
 			double firstDistance = distances[firstCityOfTour][cityNearestToFirstCity];
 			double secDistance = distances[lastCityOfTour][cityNearestToLastCity];
@@ -64,12 +68,10 @@ public class DoubleNearestNeighbor extends NeighborHeuristic{
 				lastCityOfTour = nextCity;
 			}
 			
-			usedCities.add(nextCity);
-			
+			usedCities.add(nextCity);			
 			count++;
 		}
-	
-		
+			
 		//Now the tour does not necessary starts at the start city number
 		//if not, it has to be shifted
 		
@@ -78,9 +80,8 @@ public class DoubleNearestNeighbor extends NeighborHeuristic{
 		if(index != 0) {			 
 			shiftTourToStartWithChosenStartCity(index, tempTour);							 
 		} else {
-			SaveCopy.copy(tour, tempTour);
-		}
-		
+			SaveCopy.copy(resultingTour, tempTour);
+		}		
 	}
 
 	private void shiftTourToStartWithChosenStartCity(int index, LinkedList<Integer> tempTour) {
@@ -93,13 +94,13 @@ public class DoubleNearestNeighbor extends NeighborHeuristic{
 			 list2 = new LinkedList<Integer>(tempTour.subList(0, index));
 			 
 			 for(int i = 0; i < list1.size(); i++) {
-				 tour[i] = list1.get(i);				 
+				 resultingTour[i] = list1.get(i);				 
 			 }
 			 
-			 int pos = tour.length - index;
+			 int pos = resultingTour.length - index;
 			 int it = 0;
-			 for(int i = pos; i < tour.length; i++) {
-				 tour[i] = list2.get(it);
+			 for(int i = pos; i < resultingTour.length; i++) {
+				 resultingTour[i] = list2.get(it);
 				 it++;
 			 }			 		
 	}

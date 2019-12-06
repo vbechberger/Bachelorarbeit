@@ -57,12 +57,11 @@ public class SaveCopy {
 			throw new RuntimeException("The arrays have the different length!");
 		}
 		
-		if (list.size() == 0) {
-			throw new RuntimeException("The second array is empty!");
+		if (list.size() == 0 || list == null) {
+			throw new RuntimeException("The second array is empty or does not exist!");
 		}
 		
-		length = list.size();
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			arr[i] = list.get(i);
 		}
 	}

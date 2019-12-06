@@ -7,12 +7,12 @@ import org.junit.Test;
 
 import heuristics.DoubleNearestNeighbor;
 import heuristics.NearestNeighbor;
-import heuristics.NeighborHeuristic;
+import heuristics.ConstructionHeuristic;
 import util.Printer;
 
 public class NeighborHeuristicTest {
 	
-	private NeighborHeuristic nh;
+	private ConstructionHeuristic nh;
 	private static double distances[][];
 
 	@BeforeClass
@@ -28,10 +28,28 @@ public class NeighborHeuristicTest {
 
 	@Test
 	public void testNearestNeighbor() {
-											   
+				
 		nh = new NearestNeighbor(distances, 2);
 		
 		int [] expectedTour = new int[]{2, 5, 4, 1, 0, 3};
+		Printer.printArray(nh.getTour());
+		
+		Assert.assertArrayEquals(expectedTour, nh.getTour());
+	}
+	
+	@Test
+	public void testNearestNeighbor2() {
+					
+		double[][] distances = new double[][] {{0, 8, 4, 9, 9},
+											   {8, 0, 6, 7, 10}, 
+											   {4, 6, 0, 5, 6}, 
+											   {9, 7, 5, 0, 4}, 
+											   {9, 10, 6, 4, 0}}; 
+											   
+				
+		nh = new NearestNeighbor(distances, 0);
+		
+		int [] expectedTour = new int[]{0, 2, 3, 4, 1};
 		Printer.printArray(nh.getTour());
 		
 		Assert.assertArrayEquals(expectedTour, nh.getTour());
@@ -47,5 +65,7 @@ public class NeighborHeuristicTest {
 		
 		Assert.assertArrayEquals(expectedTour, nh.getTour());
 	}
+	
+	
 
 }

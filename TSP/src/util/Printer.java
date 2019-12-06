@@ -3,6 +3,8 @@ package util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Printer {
 
@@ -36,9 +38,9 @@ public class Printer {
 		 System.out.println();
 	}
 	
-	public static void printArrayList(ArrayList<Integer> array) {
-		 System.out.println("ArrayList of integers:");		 
-		 for(Integer elem: array) {			
+	public static void printList(List<Integer> list) {
+		 System.out.println("List of integers:");		 
+		 for(Integer elem: list) {			
 			 System.out.print(" " + elem + " ");
 		 }
 		 System.out.println();
@@ -81,4 +83,22 @@ public class Printer {
 		 }
 		 System.out.println();
 	}
+	
+	public static void printArrayListOfPairs(ArrayList<Pair<Integer,Integer>> list) {
+		 System.out.println("Array of pairs: ");		 
+		 for(int i = 0; i < list.size(); i++) {			
+			 System.out.print(" (" + list.get(i).getFirst() + ", " + list.get(i).getSecond() + ") ");
+		 }
+		 System.out.println();
+	}
+	
+	public static void printSet(Set<Integer> set) {
+		 System.out.println("Set of integers:");		 
+		 for(Integer elem: set) {			
+			 System.out.print(" " + elem + " ");
+		 }
+		 System.out.println();
+	}
+	
+	
 }
