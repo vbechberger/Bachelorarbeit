@@ -9,12 +9,13 @@ import java.io.OutputStreamWriter;
 import heuristics.CheapestInsertion;
 import heuristics.DistanceInsertion;
 import heuristics.DistanceInsertionType;
-//import heuristics.DoubleNearestNeighbor;
-//import heuristics.NearestNeighbor;
+import heuristics.DoubleNearestNeighbor;
+import heuristics.NearestNeighbor;
 
 public class ConstrHeuristicLauncher {
 	
 	private static String pathWhereToSaveData;
+	private static int dimension = -1;
 	
 	public static void main(String[] args) {
 		
@@ -35,23 +36,24 @@ public class ConstrHeuristicLauncher {
 			tsp = new TSPParser(file);
 			tspInst = tsp.getTspInstance();
 			double[][]distances = tspInst.getDistanceTable().getDistances();
+			dimension = tspInst.getDimension();
 			
 			
-			//int numberOfLaunches = tspInst.getDimension();
-			int numberOfLaunches = 1;
+			int numberOfLaunches = tspInst.getDimension();
+			//int numberOfLaunches = 1;
 			
-			for (int startCity = 0; startCity < numberOfLaunches; startCity++) {				
+			for (int startCity = 0; startCity < numberOfLaunches; startCity++) {
 
-				//writeTourIntoSameFile(new NearestNeighbor(distances, startCity).getTour());
+				writeSolutionIntoSameFile(new NearestNeighbor(distances, startCity).getTour());
 				
-				//writeTourIntoSameFile(new DoubleNearestNeighbor(distances, startCity).getTour());
+				writeSolutionIntoSameFile(new DoubleNearestNeighbor(distances, startCity).getTour());
 				
-				writeTourIntoSameFile(new CheapestInsertion(distances, startCity).getTour());
+				writeSolutionIntoSameFile(new CheapestInsertion(distances, startCity).getTour());
 				
-				writeTourIntoSameFile(new DistanceInsertion(DistanceInsertionType.NEAREST, 
+				writeSolutionIntoSameFile(new DistanceInsertion(DistanceInsertionType.NEAREST, 
 															distances, 
 															startCity).getTour());
-				writeTourIntoSameFile(new DistanceInsertion(DistanceInsertionType.FARTHEST, 
+				writeSolutionIntoSameFile(new DistanceInsertion(DistanceInsertionType.FARTHEST, 
 															distances, 
 															startCity).getTour());			
 			}	
@@ -65,11 +67,15 @@ public class ConstrHeuristicLauncher {
 	
 	}
 	  
-	private static void writeTourIntoSameFile(int[] tourAsArray) {
+	private static void writeSolutionIntoSameFile(int[] tourAsArray) {
 		
-		Tour tour = new Tour(tourAsArray);
-		String data = tour.toString();
-		writeDataIntoSameFile(data, pathWhereToSaveData);
+		Solution solution = new Solution(dimension, tourAsArray);
+		String tour = solution.toString();
+		if(!solution.isFeasible()) {
+			throw new IllegalStateException("The obtained solution with the tour: " 
+					+ tour + " is not feasible!");
+		}
+		writeDataIntoSameFile(tour, pathWhereToSaveData);
 	}
 		
 	
@@ -92,6 +98,7 @@ public class ConstrHeuristicLauncher {
 							new FileOutputStream(path, true))); /*append = true*/
 			out.write(data); 
 			out.newLine(); 
+			//Printer.printString("DONE");
 		} catch (IOException e) { 
 			e.printStackTrace(); 
 		}finally{ 

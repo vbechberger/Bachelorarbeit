@@ -137,17 +137,29 @@ public abstract class AbstractInsertion extends  ConstructionHeuristic{
 		int indexWhereToInsert = -1;
 		for(Pair<Integer, Integer> pair: pairsOfUsedCities) {
 			double nextCosts = insertionCostsOf(city, (int)pair.getFirst(), (int)pair.getSecond());
+			//System.out.println("Next costs of " +
+					//city + "btw the pair (" + (int)pair.getFirst() + ", "
+					//+ (int)pair.getSecond() + ")" + " are " +nextCosts);
+			
 			if (nextCosts < shortestDistance) {
+				
 				shortestDistance = nextCosts;
 				//define the number of the index, which the second city 
 				//in the considered pair 
 				//takes in the part tour,
 				//as we want to put the specified city between this pair
 				indexWhereToInsert = partTour.indexOf(pair.getSecond());
+				
 			}
+			//Printer.printString("Index to insert: " + indexWhereToInsert 
+					//+ " by " + city + " (" + (int)pair.getFirst() + ", " + (int)pair.getSecond() + ")");
+			
 		}
 		
+		
+		
 		if (indexWhereToInsert == -1) {
+			//Printer.printArray2D(distances);
 			throw new IllegalStateException("No city was found!");
 		}
 		
@@ -190,9 +202,16 @@ public abstract class AbstractInsertion extends  ConstructionHeuristic{
 	 */
 	private double insertionCostsOf(int cityToBeinserted, int firstCityOfPartTour, int secCityOfPartTour) {
 		
-		return distances[cityToBeinserted][firstCityOfPartTour] +
-			   distances[cityToBeinserted][secCityOfPartTour] - 
-			   distances[firstCityOfPartTour][secCityOfPartTour];
+		double distBtwCityAndFirstNeighbor = distances[cityToBeinserted][firstCityOfPartTour];
+		//System.out.println("distBtwCityAndFirstNeighbor " + distBtwCityAndFirstNeighbor);
+		
+		double distBtwCityAndSecNeighbor = distances[cityToBeinserted][secCityOfPartTour];
+		//System.out.println("distBtwCityAndSecNeighbor " + distBtwCityAndSecNeighbor);
+		
+		double distBtwPair = distances[firstCityOfPartTour][secCityOfPartTour];
+		//System.out.println("distBtwPair " + distBtwPair);
+		
+		return distBtwCityAndFirstNeighbor + distBtwCityAndSecNeighbor - distBtwPair;
 		
 	}	
 

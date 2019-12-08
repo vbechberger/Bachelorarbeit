@@ -5,8 +5,8 @@ package genetic.distancefct;
  * http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp95.pdf
  * 
  * If the traveling salesman problem is a geographical problem, 
- * then the nodes correspond topoints on the earth and the distance 
- * between two points is their distance on the idealizedsphere 
+ * then the nodes correspond to points on the earth and the distance 
+ * between two points is their distance on the idealized sphere 
  * with radius 6378.388 kilometers.
  * 
  * The node coordinates give the geographical latitude and longitude 
@@ -118,16 +118,22 @@ public class GeoDistanceFct extends DistanceFunction {
 			int degrees = (int) Math.floor(coordinatesInDegrees[i]);
 			//System.out.println("Next degree: " + degrees);
 			//int min = (int)((coordinatesInDegrees[i] - degrees) * 100);
-			double min = (coordinatesInDegrees[i] % degrees) * 100;
+			double min = (coordinatesInDegrees[i] - degrees) * 100;
 			//System.out.println("Next min: " + min);
 			double dDecimal = degrees + min/60.0;
-			//System.out.println("////////////////");
+			
+			if(Double.isNaN(dDecimal)) {
+				System.out.println("!!!!!!!!!!!!dDecimal:" + dDecimal);
+				System.out.println("!!!!!!!!!!!!degrees war:" + degrees);
+				System.out.println("!!!!!!!!!!!!minutes war:" + min);
+			}
 			
 						
 			/** Then convert decimal coordinates into radians 
 			 * by multiplying each one by PI/180
 			 */
 			coordinatesInRadians[i] = Math.PI * dDecimal / 180.0;
+			
 					
 		}
 				

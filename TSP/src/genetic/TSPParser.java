@@ -37,7 +37,6 @@ public class TSPParser {
 				line = line.trim();
 				
 				if (line.equals("NODE_COORD_SECTION")) {
-					//Printer.printString("I saw Node Coord Section");
 					
 					data = new double[dimension][2];
 					
