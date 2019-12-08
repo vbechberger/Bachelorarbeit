@@ -24,7 +24,7 @@ public class TSPInstance {
 		this.edgeWeightType = edgeWeightType;
 		if(edgeWeightType.equals(EdgeWeightType.EXPLICIT)) {
 			distanceTable = new DistanceTable(data, this.dimension);;
-			distanceTable.printFirstCol();
+			//distanceTable.printFirstCol();
 		} else {
 			distanceTable = new DistanceTable(edgeWeightType.getDistTableFiller(), data, this.dimension);
 		

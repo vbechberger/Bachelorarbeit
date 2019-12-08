@@ -40,7 +40,7 @@ public class GenAlgoSimulator {
 	private MutationType mutationType;
 	//private Selection selection;
 	private FitnessFunction fitnessFct;
-	private Representation representation;
+	//private Representation representation;
 	private Crossover crossover;
 	private Mutation mutation;
 	
@@ -66,7 +66,7 @@ public class GenAlgoSimulator {
 		this.mutationType = mutationType;
 		//this.selection = selection;
 		this.fitnessFct = fitnessFct;
-		this.representation = representation;
+		//this.representation = representation;
 		
 				
 	}

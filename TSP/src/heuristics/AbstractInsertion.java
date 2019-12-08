@@ -11,10 +11,10 @@ public abstract class AbstractInsertion extends  ConstructionHeuristic{
 	
 	
 		
-	public AbstractInsertion(double[][] distances, 
-							 int startCityNumber,
-							 OptimalSearchStrategy<Double> searchStrategy) {
-		super(distances, startCityNumber, searchStrategy);
+	public AbstractInsertion(OptimalSearchStrategy<Double> searchStrategy, 
+							 double[][] distances, 
+							 int startCityNumber) {
+		super(searchStrategy, distances, startCityNumber);
 	}
 	
 	/**

@@ -8,7 +8,7 @@ import util.SaveCopy;
 public class DoubleNearestNeighbor extends ConstructionHeuristic{
 	
 	public DoubleNearestNeighbor(double[][] distances, int startCityNumber) {
-		super(distances, startCityNumber, new NearestStrategy());
+		super(new NearestStrategy(), distances, startCityNumber);
 	}
 
 	@Override

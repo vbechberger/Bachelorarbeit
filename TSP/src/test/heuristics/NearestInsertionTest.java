@@ -25,7 +25,7 @@ public class NearestInsertionTest {
 											   {70, 27, 47, 189, 0, 55}, 
 											   {121, 84, 29, 236, 55, 0}};
 											   
-		heuristic = new DistanceInsertion(distances, 2, DistanceInsertionType.NEAREST);
+		heuristic = new DistanceInsertion(DistanceInsertionType.NEAREST, distances, 2);
 		
 		int [] expectedTour = new int[]{2, 0, 4, 1, 3, 5};
 		Printer.printArray(heuristic.getTour());
@@ -43,7 +43,7 @@ public class NearestInsertionTest {
 			   								   {9, 7, 5, 0, 4}, 
 			   								   {9, 10, 6, 4, 0}}; 
 											   
-		heuristic = new DistanceInsertion(distances, 0, DistanceInsertionType.NEAREST);
+		heuristic = new DistanceInsertion(DistanceInsertionType.NEAREST, distances, 0);
 		
 		int [] expectedTour = new int[]{0, 4, 3, 1, 2};
 		Printer.printArray(heuristic.getTour());

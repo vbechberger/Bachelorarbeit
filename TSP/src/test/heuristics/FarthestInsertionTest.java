@@ -22,7 +22,7 @@ private ConstructionHeuristic heuristic;
 			   								   {9, 7, 5, 0, 4}, 
 			   								   {9, 10, 6, 4, 0}}; 
 		
-		heuristic = new DistanceInsertion(distances, 0, DistanceInsertionType.FARTHEST);
+		heuristic = new DistanceInsertion(DistanceInsertionType.FARTHEST, distances, 0);
 		
 		int [] expectedTour = new int[]{0, 1, 3, 4, 2};
 		Printer.printArray(heuristic.getTour());

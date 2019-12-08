@@ -37,6 +37,7 @@ public class TSPParser {
 				line = line.trim();
 				
 				if (line.equals("NODE_COORD_SECTION")) {
+					//Printer.printString("I saw Node Coord Section");
 					
 					data = new double[dimension][2];
 					
@@ -56,7 +57,7 @@ public class TSPParser {
 					    data[count][1] = numbers[2];					    		
 					    count++;
 					}						
-					//Printer.printArray2D(coordinates);
+					//Printer.printArray2D(data);
 				} else if (line.equals("EDGE_WEIGHT_SECTION")) {
 					
 					data = parseEdgeWeightSection(in, edgeWeightFormat, dimension);
@@ -96,11 +97,11 @@ public class TSPParser {
 						} else {
 							comment = comment + "\n" + content;
 						}						
-						Printer.printString("COMMENT: " + comment);
+						//Printer.printString("COMMENT: " + comment);
 						
 					} else if (key.equals("TYPE")) {
 						type = InstanceType.valueOf(content);						
-						Printer.printString("TYPE: " + type);
+						//Printer.printString("TYPE: " + type);
 						
 					} else if (key.equals("DIMENSION")) {
 						dimension = Integer.parseInt(content);
@@ -108,19 +109,19 @@ public class TSPParser {
 						
 					} else if (key.equals("EDGE_WEIGHT_TYPE")) {
 						edgeWeightType = EdgeWeightType.valueOf(content);
-						Printer.printString("EDGE_WEIGHT_TYPE: " + edgeWeightType);
+						//Printer.printString("EDGE_WEIGHT_TYPE: " + edgeWeightType);
 						
 					} else if (key.equals("DISPLAY_DATA_TYPE")) {
 						//TODO:Introduce display data type?
-						Printer.printString("DISPLAY_DATA_TYPE: " + content);
+						//Printer.printString("DISPLAY_DATA_TYPE: " + content);
 						
 					} else if (key.equals("EDGE_WEIGHT_FORMAT")) {
 						edgeWeightFormat = EdgeWeightFormat.valueOf(content);
-						Printer.printString("EDGE_WEIGHT_FORMAT: " + content);
+						//Printer.printString("EDGE_WEIGHT_FORMAT: " + content);
 						
 						
 					} else {
-						Printer.printString("Unknown key word: " + key);						
+						//Printer.printString("Unknown key word: " + key);						
 					}
 				}
 			}

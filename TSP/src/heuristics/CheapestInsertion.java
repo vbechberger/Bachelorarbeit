@@ -9,7 +9,7 @@ public class CheapestInsertion extends AbstractInsertion{
 
 	public CheapestInsertion(double[][] distances, 
 							 int startCityNumber) {
-		super(distances, startCityNumber, new NearestStrategy());
+		super(new NearestStrategy(), distances, startCityNumber);
 	}
 
 	@Override

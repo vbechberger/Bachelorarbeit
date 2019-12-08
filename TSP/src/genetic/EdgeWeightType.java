@@ -48,9 +48,9 @@ public enum EdgeWeightType {
 		case EUC_2D: return new Euc2DDistanceFct();
 		case GEO: return new GeoDistanceFct();
 		case ATT: return new ATTDistanceFct();
-		//case EXPLICIT: new ExplicitDistances(edgeWeightFormat);
 		case CEIL_2D:	return new Ceil2DDistancefct();
 		
+		//in case of Explicit and others, the distance fct is not defined
 		default:
 			throw new IllegalArgumentException(
 					"the distance function is not defined for " + this);

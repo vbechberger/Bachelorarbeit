@@ -18,11 +18,11 @@ import util.Pair;
 public class DistanceInsertion extends AbstractInsertion{
 	
 
-	public DistanceInsertion(double[][] distances, 
-							int startCityNumber, 
-							DistanceInsertionType insertionType) {
+	public DistanceInsertion(DistanceInsertionType insertionType,
+							double[][] distances, 
+							int startCityNumber) {
 		//TODO:check for negative distances and for quadratic matrix
-		super(distances, startCityNumber, insertionType.getSearchStrategy());
+		super(insertionType.getSearchStrategy(), distances, startCityNumber);
 	}
 
 	

@@ -16,7 +16,7 @@ import util.Pair;
 public class NearestNeighbor extends ConstructionHeuristic{
 
 	public NearestNeighbor(double[][] distances, int startCityNumber) {
-		super(distances, startCityNumber, new NearestStrategy());
+		super(new NearestStrategy(), distances, startCityNumber);
 	}
 
 	/**

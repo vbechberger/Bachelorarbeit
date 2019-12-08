@@ -37,9 +37,9 @@ public abstract class ConstructionHeuristic {
 	
 	
 	
-	public ConstructionHeuristic(double[][] distances, 
-								 int startCityNumber,
-								 OptimalSearchStrategy<Double> searchStrategy) {
+	public ConstructionHeuristic(OptimalSearchStrategy<Double> searchStrategy,
+								 double[][] distances, 
+								 int startCityNumber) {
 		//TODO:check for negative distances
 		this.searchStrategy = searchStrategy;
 		dimension = distances.length;
