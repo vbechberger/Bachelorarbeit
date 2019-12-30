@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import genetic.mutation.Mutation;
 import genetic.mutation.MutationSwap;
 import test.util.DummyFitnessFct;
@@ -20,9 +21,9 @@ public class SwapTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		int [] tour = new int[] {1,2,5,6,4,3,8,7};
+		int [] tour = new int[] {0,1,4,5,3,2,7,6};
 		fitnessFct = new DummyFitnessFct(tour.length);
-		kid = new Chromosome(fitnessFct, tour);
+		kid = new Chromosome(fitnessFct, new Solution(8, tour));
 
 	}
 	
@@ -35,9 +36,9 @@ public class SwapTest {
 		mutation = new MutationSwap(fitnessFct, kid, 2, 4);		
 		mutation.start();
 		
-		int [] expected = new int[] {1,2,4,6,5,3,8,7};
+		int [] expected = new int[] {0,1,3,5,4,2,7,6};
 		
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenes());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
 		
 	}
 	

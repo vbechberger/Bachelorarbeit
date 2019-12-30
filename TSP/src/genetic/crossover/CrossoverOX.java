@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 
 public class CrossoverOX extends CrossoverTwoCutPoints {
 
@@ -14,9 +15,12 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
 		
-		int[] arrKid = new int[arrLength];
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
+		
+		int[] arrKid = new int[lengthOfChromosome];
 
 		// make a set with values between cuts
 		HashSet<Integer> cut = new HashSet<Integer>();
@@ -36,18 +40,18 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 		int pos = -1;
 
 		// define where we start to fill in the offspring
-		if (cutPoint2 == arrLength - 1) {
+		if (cutPoint2 == lengthOfChromosome - 1) {
 			pos = 0;
 		} else {
 			pos = cutPoint2 + 1;
 		}
 		// fill in the offspring
-		for (int i = cutPoint2 + 1; i < arrLength; i++) {
+		for (int i = cutPoint2 + 1; i < lengthOfChromosome; i++) {
 			if (!cut.contains(parent2[i])) {
 				arrKid[pos] = parent2[i];
 				// if the tail part of the offspring is filled, start from the
 				// beginning
-				if (pos == arrLength - 1) {
+				if (pos == lengthOfChromosome - 1) {
 					pos = 0;
 				} else {
 					pos++;
@@ -60,7 +64,7 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 
 				// if the tail part of the offspring is filled, start from the
 				// beginning
-				if (pos == arrLength - 1) {
+				if (pos == lengthOfChromosome - 1) {
 					pos = 0;
 				} else {
 					pos++;
@@ -69,7 +73,7 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 			}
 		}
 
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 	}
 
 }

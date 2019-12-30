@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 
-import genetic.crossover.Crossover;
+import genetic.crossover.PathReprCrossover;
 import genetic.crossover.CrossoverCycleX;
 import genetic.crossover.CrossoverModifiedX;
 import genetic.crossover.CrossoverOBX;
@@ -41,7 +41,7 @@ public class GenAlgoSimulator {
 	//private Selection selection;
 	private FitnessFunction fitnessFct;
 	//private Representation representation;
-	private Crossover crossover;
+	private PathReprCrossover crossover;
 	private Mutation mutation;
 	
 	
@@ -93,7 +93,6 @@ public class GenAlgoSimulator {
 		
 			/* 3) Make a crossover between the chosen chromosomes*/
 			setCrossover(crossoverType, fitnessFct, mom, dad);
-			crossover.start();
 		
 			/* 4) Make a mutation to the created offspring*/
 			int rangeMin = 0;

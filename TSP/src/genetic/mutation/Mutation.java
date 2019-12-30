@@ -14,9 +14,9 @@ public abstract class Mutation {
 	public Mutation(FitnessFunction fitnessFct, Chromosome kid) {
 		//TODO:perhaps via setFct
 		this.fitnessFct = fitnessFct;
-		arrLength = kid.getGenes().length;
+		arrLength = kid.getGenesInPath().length;
 		kidGenes = new int[arrLength];
-		SaveCopy.copy(kidGenes, kid.getGenes());				
+		SaveCopy.copy(kidGenes, kid.getGenesInPath());				
 	}
 	
 	public void start() {
@@ -33,10 +33,5 @@ public abstract class Mutation {
 
 	public Chromosome getMutant() {
 		return mutant;
-	}
-	
-	
-	
-	
-	
+	}	
 }

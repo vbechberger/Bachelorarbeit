@@ -4,14 +4,20 @@ import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import util.Printer;
 import util.SaveCopy;
 
+/**
+ * 
+ * @author valeriyabechberger
+ *
+ */
 public class Chromosome implements Comparable<Chromosome>{
 
 	// parameters
 
 	private final double fitness;
-	private int[] genes;
+	private Solution genes;
 	private FitnessFunction fitnessFct = null;
 	
 	/**
@@ -35,14 +41,15 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * where the genes are defined by the given sequence if integers
 	 * The fitness value of
 	 * chromosomes will be also calculated (defined by the given
-	 * fitness function).
+	 * fitness function)
+	 * Chromosome gets always the tour in path representation.
 	 * 
 	 * @param numbers
 	 */
-	public Chromosome(FitnessFunction fitnessFct, int[] tour) {
+	public Chromosome(FitnessFunction fitnessFct, Solution tspSolution) {
 		setFitnessFct(fitnessFct);
-		setGenes(tour);
-		this.fitness = fitnessFct.calcFitness(genes);
+		setGenes(tspSolution);
+		this.fitness = fitnessFct.calcFitness(tspSolution.getTour().tour);
 
 	}
 
@@ -50,14 +57,25 @@ public class Chromosome implements Comparable<Chromosome>{
 	public double getFitness() {
 		return fitness;
 	}
-
-	public int[] getGenes() {
-		return genes;
-	}
 	
 	public FitnessFunction getFitnessFct() {
 		return fitnessFct;
 	}
+	
+	public int getSize() {
+		return this.genes.getDimension();
+	}
+	
+	public Solution decodeIntoSolution() {
+		return this.genes;
+	}
+	
+	public int[] getGenesInPath() {
+		return this.genes.getTour().getInPathAsArr();
+	}
+	
+	
+	
 	
 	private void setFitnessFct(FitnessFunction fitnessFct) {
 		if(fitnessFct == null) {
@@ -68,7 +86,8 @@ public class Chromosome implements Comparable<Chromosome>{
 
 	
 	private void setGenes() {
-		genes = new int[fitnessFct.getDimention()];
+		
+		int[] genesInArray = new int[fitnessFct.getDimention()];
 		
 		ArrayList<Integer> tempTour = new ArrayList<Integer>();
 
@@ -79,22 +98,23 @@ public class Chromosome implements Comparable<Chromosome>{
 		}
 
 		Collections.shuffle(tempTour);
-		SaveCopy.copy(genes, tempTour);
+		SaveCopy.copy(genesInArray, tempTour);
+		
+		genes = new Solution(this.fitnessFct.getDimention(), genesInArray);
 	}
 	
 	
-	private void setGenes(int[] tour) {
+	private void setGenes(Solution solutionTour) {
 		
-		if(tour == null) {
+		if(solutionTour == null) {
 			setGenes();
 			return;
 		}
 		
-		if (tour.length != fitnessFct.getDimention()) {
+		if (solutionTour.getDimension() != fitnessFct.getDimention()) {
 			throw new IllegalStateException("Dimension size is inconsistent.");			
 		}
-		genes = new int[tour.length];
-		SaveCopy.copy(genes, tour);
+		genes = solutionTour;
 	}
 	
 	
@@ -140,5 +160,9 @@ public class Chromosome implements Comparable<Chromosome>{
     public int hashCode() {
         return Objects.hash(fitness);
     }
+	
+	public void print() {
+		Printer.printArray(this.getGenesInPath());
+	}
 
 }

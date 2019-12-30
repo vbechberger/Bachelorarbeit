@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import genetic.mutation.Mutation;
 import genetic.mutation.MutationShift;
 import test.util.DummyFitnessFct;
@@ -20,9 +21,9 @@ public class ShiftTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	
-		int [] tour = new int[] {3,7,1,9,6,4,5,2,8};
+		int [] tour = new int[] {2,6,0,8,5,3,4,1,7};
 		fitnessFct = new DummyFitnessFct(tour.length);
-		kid = new Chromosome(fitnessFct, tour);
+		kid = new Chromosome(fitnessFct, new Solution(9, tour));
 	}
 
 	@Test
@@ -37,12 +38,12 @@ public class ShiftTest {
 		//ramdomly select the number of positions the city to be replaced at
 		//int randomStepsNr = randomGenerator.nextInt(8) + 1;
 		
-		mutation = new MutationShift(fitnessFct, kid, 6, 5);		
+		mutation = new MutationShift(fitnessFct, kid, 5, 5);		
 		mutation.start();
 
-		int [] expected = new int[] {6,3,7,1,9,4,5,2,8};
+		int [] expected = new int[] {5,2,6,0,8,3,4,1,7};
 
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenes());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
 	}
 
 }

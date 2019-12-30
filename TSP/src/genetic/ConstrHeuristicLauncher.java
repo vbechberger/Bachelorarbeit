@@ -71,10 +71,6 @@ public class ConstrHeuristicLauncher {
 		
 		Solution solution = new Solution(dimension, tourAsArray);
 		String tour = solution.toString();
-		if(!solution.isFeasible()) {
-			throw new IllegalStateException("The obtained solution with the tour: " 
-					+ tour + " is not feasible!");
-		}
 		writeDataIntoSameFile(tour, pathWhereToSaveData);
 	}
 		

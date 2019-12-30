@@ -15,6 +15,7 @@ import util.*;
 
 public class OBXTest {
 	
+
 	private static FitnessFunction fitnessFct;
 	
 	private Crossover crossover;
@@ -29,11 +30,11 @@ public class OBXTest {
 		
 		fitnessFct = new DummyFitnessFct(8);
 		
-		int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
-		c1 = new Chromosome(fitnessFct, tour1);
+		int [] tour1 = new int[] {0,1,4,5,3,2,7,6};
+		c1 = new Chromosome(fitnessFct, new Solution(8, tour1));
 		
-		int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
-		c2 = new Chromosome(fitnessFct, tour2);
+		int [] tour2 = new int[] {0,3,1,2,5,4,6,7};
+		c2 = new Chromosome(fitnessFct, new Solution(8, tour2));
 		
 		indices.add(2);
 		indices.add(4);
@@ -44,11 +45,10 @@ public class OBXTest {
 	public void testOBXKid1() {
 		
 		crossover = new CrossoverOBX(fitnessFct, c1, c2, indices);
-		crossover.start();
 		
-		int [] expected = new int[] {1,5,2,4,6,3,7,8};
-		Printer.printArray(crossover.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
+		int [] expected = new int[] {0,4,1,3,5,2,6,7};
+		Printer.printArray(crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
 		
 	}
 	
@@ -56,11 +56,10 @@ public class OBXTest {
 	public void testOBXKid2() {
 		
 		crossover = new CrossoverOBX(fitnessFct, c1, c2, indices);
-		crossover.start();
 		
-		int [] expected = new int[] {1,2,6,5,4,3,8,7};
-		Printer.printArray(crossover.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
+		int [] expected = new int[] {0,1,5,4,3,2,7,6};
+		Printer.printArray(crossover.getKid2().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
 		
 	}
 

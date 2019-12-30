@@ -6,6 +6,7 @@ import java.util.Random;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 
 public class MutationScramble extends Mutation {
 	
@@ -36,7 +37,7 @@ public class MutationScramble extends Mutation {
 			kidGenes[i] = shuffled.get(i - index1);
 		}
 				
-		return new Chromosome(fitnessFct, kidGenes);
+		return new Chromosome(fitnessFct, new Solution(arrLength, kidGenes));
 	}
 	
 	

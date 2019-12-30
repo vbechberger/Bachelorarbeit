@@ -7,6 +7,7 @@ import java.util.Set;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import util.SaveCopy;
 
 /**
@@ -33,9 +34,12 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
 		
-		int[] arrKid = new int[arrLength];
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
+		
+		int[] arrKid = new int[lengthOfChromosome];
 
 		SaveCopy.copy(arrKid, parent2);
 
@@ -67,7 +71,7 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 			arrKid[indicesInParent2.get(i)] = selected[i];
 		}
 
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 
 	}
 

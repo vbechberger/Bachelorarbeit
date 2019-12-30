@@ -3,7 +3,7 @@ package genetic.crossover;
 import genetic.Chromosome;
 import genetic.FitnessFunction;
 
-public abstract class CrossoverCutPoint extends Crossover {
+public abstract class CrossoverCutPoint extends PathReprCrossover {
 	protected int cutPoint = -1;
 
 	public CrossoverCutPoint(FitnessFunction fitnessFct, 
@@ -11,20 +11,15 @@ public abstract class CrossoverCutPoint extends Crossover {
 							Chromosome secondParent, 
 							int cutPoint) {
 		super(fitnessFct, firstParent, secondParent);
+		setCutPoint(cutPoint);
+	}
+
+	
+	private void setCutPoint(int cutPoint) {
+		if (cutPoint < 0 || cutPoint >= lengthOfChromosome) {
+			throw new IllegalStateException("The cut point is not feasible!");
+		}		
 		this.cutPoint = cutPoint;
 	}
-
-	public void start() {
-
-		if (cutPoint == -1) {
-			throw new IllegalStateException("The cut point is not given!");
-		}
-
-		kid1 = doCrossover(parent1, parent2);
-		kid2 = doCrossover(parent2, parent1);
-
-	}
-
-	protected abstract Chromosome doCrossover(int[] parent1, int[] parent2);
 
 }

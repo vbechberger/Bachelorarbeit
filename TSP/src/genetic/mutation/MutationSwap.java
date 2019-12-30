@@ -2,6 +2,7 @@ package genetic.mutation;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 
 
 /**
@@ -32,7 +33,7 @@ public class MutationSwap extends Mutation {
 		kidGenes[index1] = tempValue2;
 		kidGenes[index2] = tempValue1;
 		
-		return new Chromosome(fitnessFct, kidGenes);
+		return new Chromosome(fitnessFct, new Solution(arrLength, kidGenes));
 		
 	}
 	

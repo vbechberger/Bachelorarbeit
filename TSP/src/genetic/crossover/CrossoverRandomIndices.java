@@ -12,21 +12,16 @@ public abstract class CrossoverRandomIndices extends CrossoverCycleSubset {
 
 	public CrossoverRandomIndices(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent);
-		this.indices = indices;//TODO:Save copy? actually i do not change the set
-
+		setIndices(indices);
 	}
+	
 
-	public void start() {
-
+	private void setIndices(Set<Integer> indices) {
 		if (indices == null || indices.isEmpty()) {
 			throw new IllegalStateException("The indices are not chosen!");
 		}
-
-		kid1 = doCrossover(parent1, parent2);
-		kid2 = doCrossover(parent2, parent1);
-
+		
+		this.indices = indices;//TODO:Save copy? actually i do not change the set
 	}
-
-	protected abstract Chromosome doCrossover(int[] parent1, int[] parent2);
 
 }

@@ -3,6 +3,7 @@ package genetic.mutation;
 import java.util.ArrayList;
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import util.SaveCopy;
 
 /**
@@ -43,7 +44,7 @@ public class MutationShift extends Mutation {
 		//copy the result back to the kid array
 		SaveCopy.copy(kidGenes, temp);
 		
-		return new Chromosome(fitnessFct, kidGenes);
+		return new Chromosome(fitnessFct, new Solution(arrLength, kidGenes));
 	}
 	
 	

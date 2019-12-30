@@ -1,9 +1,9 @@
 package genetic.crossover;
 
 import java.util.HashSet;
-
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import util.SaveCopy;
 
 public class CrossoverModifiedX extends CrossoverCutPoint {
@@ -16,15 +16,18 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 	}
 
 	@Override
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
 		
-		int[] arrKid = new int[arrLength];
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
+		
+		int[] arrKid = new int[lengthOfChromosome];
 		
 		//if the cut point is the first or the last index
 		//then we just copy the corresponding parent
 		if (cutPoint == 0) {
 			SaveCopy.copy(arrKid, parent2);
-		} else if (cutPoint == arrLength - 1) {
+		} else if (cutPoint == lengthOfChromosome - 1) {
 			SaveCopy.copy(arrKid, parent1);
 		} else {
 
@@ -45,7 +48,7 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 			//with the cities from the second parent
 			int pos = cutPoint;
 
-			for (int i = 0; i < arrLength; i++) {
+			for (int i = 0; i < lengthOfChromosome; i++) {
 				//if the next city in the second parent has 
 				//not been taken from the first parent, i.e.
 				//this city did not stand in the 1st parent before the cut point
@@ -58,7 +61,7 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 			}
 		}
 
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 	}
 
 }

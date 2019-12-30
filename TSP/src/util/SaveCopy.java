@@ -1,7 +1,9 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Makes deep copy of the arrays
@@ -110,15 +112,16 @@ public class SaveCopy {
 			}
 		}
 	}
-	/*public static HashSet<Integer> copy(HashSet<Integer> set) {
-		if(set != null) {
-			if(set.isEmpty()) {
-				throw new RuntimeException("The set to be copied is empty!");
-			}
-			HashSet<Integer> copiedSet = new HashSet<Integer>();
-			copiedSet.addAll(set);
-			
+	public static void copy(HashSet<Integer>set1, HashSet<Integer> set2) {
+		if(set1 == null) {
+			throw new IllegalArgumentException("The first set, is not initialized");
 		}
-	}*/
+		if(set2 == null || set2.isEmpty()) {
+
+			throw new RuntimeException("The second set to be copied is empty or null!");
+		}
+		
+		set1.addAll(set2);
+	}
 	
 }

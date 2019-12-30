@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import genetic.crossover.Crossover;
 import genetic.crossover.CrossoverPBX;
 import test.util.DummyFitnessFct;
@@ -26,11 +27,11 @@ public class PBXTest {
 			
 			fitnessFct = new DummyFitnessFct(8);
 		
-			int [] tour1 = new int[] {1,2,5,6,4,3,8,7};
-			c1 = new Chromosome(fitnessFct, tour1);
+			int [] tour1 = new int[] {0,1,4,5,3,2,7,6};
+			c1 = new Chromosome(fitnessFct, new Solution(8, tour1));
 			
-			int [] tour2 = new int[] {1,4,2,3,6,5,7,8};
-			c2 = new Chromosome(fitnessFct, tour2);
+			int [] tour2 = new int[] {0,3,1,2,5,4,6,7};
+			c2 = new Chromosome(fitnessFct, new Solution(8, tour2));
 			
 			indices.add(2);
 			indices.add(4);
@@ -42,11 +43,10 @@ public class PBXTest {
 	public void testPBXKid1() {
 		
 		crossover = new CrossoverPBX(fitnessFct, c1, c2, indices);
-		crossover.start();
 		
-		int [] expected = new int[] {1,2,5,6,4,3,7,8};
-		Printer.printArray(crossover.getKid1().getGenes());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenes());
+		int [] expected = new int[] {0,1,4,5,3,2,6,7};
+		Printer.printArray(crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
 		
 	}
 
@@ -54,11 +54,10 @@ public class PBXTest {
 	public void testPBXKid2() {
 		
 		crossover = new CrossoverPBX(fitnessFct, c1, c2, indices);
-		crossover.start();
 		
-		int [] expected = new int[] {1,4,2,3,6,5,8,7};
-		Printer.printArray(crossover.getKid2().getGenes());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenes());
+		int [] expected = new int[] {0,3,1,2,5,4,7,6};
+		Printer.printArray(crossover.getKid2().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
 		
 	}
 }

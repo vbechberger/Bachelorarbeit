@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 
 public class CrossoverLOX extends CrossoverTwoCutPoints {
 
@@ -14,16 +15,19 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+		
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
 		
 		//TODO: the same thing perhaps in othe operators
 		//if the cut interval includes the whole chromosome,
 		//return the first parent
-		if ((cutPoint == 0) && (cutPoint2 == (arrLength - 1))) {
-			return new Chromosome(fitnessFct, parent1);
+		if ((cutPoint == 0) && (cutPoint2 == (lengthOfChromosome - 1))) {
+			return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, parent1));
 		}
 		
-		int[] arrKid = new int[arrLength];
+		int[] arrKid = new int[lengthOfChromosome];
 
 		// make a set with values between cuts
 		HashSet<Integer> cut = new HashSet<Integer>();
@@ -47,7 +51,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		}
 		
 		// go through the second parent from the very beginning of its chromosome
-		for (int i = 0; i < arrLength; i++) {
+		for (int i = 0; i < lengthOfChromosome; i++) {
 			
 			//if the candidate city has not been used yet, 
 			//then this city goes to the offspring 
@@ -57,7 +61,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 				//which is already filled in the offspring
 				if (pos == cutPoint) {
 					//if this part was at the end of the chromosome, then we are ready
-					if (cutPoint2 == arrLength - 1) {
+					if (cutPoint2 == lengthOfChromosome - 1) {
 						break;
 					//if not, jump over this part	
 					} else {
@@ -71,7 +75,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		}
 
 		
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 	}
 
 }

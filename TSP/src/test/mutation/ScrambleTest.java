@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import genetic.mutation.Mutation;
 import genetic.mutation.MutationScramble;
 import test.util.DummyFitnessFct;
@@ -19,9 +20,9 @@ public class ScrambleTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		int [] tour = new int[] {1,2,5,6,4,3,8,7};
+		int [] tour = new int[] {0,1,4,5,3,2,7,6};
 		fitnessFct = new DummyFitnessFct(tour.length);
-		kid = new Chromosome(fitnessFct, tour);
+		kid = new Chromosome(fitnessFct, new Solution(8, tour));
 
 	}
 
@@ -30,9 +31,9 @@ public class ScrambleTest {
 		mutation = new MutationScramble(fitnessFct, kid, 1, 6);		
 		mutation.start();
 		
-		int [] expected = new int[] {1,5,2,3,8,4,6,7};
+		int [] expected = new int[] {0,4,1,2,7,3,5,6};
 		
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenes());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
 	}
 
 }

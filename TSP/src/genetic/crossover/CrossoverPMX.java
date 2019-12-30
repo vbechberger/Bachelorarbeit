@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 
 public class CrossoverPMX extends CrossoverTwoCutPoints {
 
@@ -14,9 +15,12 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
 		
-		int[] arrKid = new int[arrLength];
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
+		
+		int[] arrKid = new int[lengthOfChromosome];
 
 		// randomly select two cut points on both parents
 		// fill in two kids by exchanging the genetic information between
@@ -27,7 +31,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 		for (int i = cutPoint; i < cutPoint2 + 1; i++) {
 			arrKid[i] = parent1[i];
 		}
-		for (int i = cutPoint2 + 1; i < arrLength; i++) {
+		for (int i = cutPoint2 + 1; i < lengthOfChromosome; i++) {
 			arrKid[i] = parent2[i];
 		}
 
@@ -67,7 +71,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 
 		// make the same procedure for the part started from the second cut point
 		// till the end of the array
-		for (int i = cutPoint2 + 1; i < arrLength; i++) {
+		for (int i = cutPoint2 + 1; i < lengthOfChromosome; i++) {
 
 			if (cut.contains(arrKid[i])) {
 				while (cut.contains(arrKid[i])) {
@@ -77,7 +81,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 
 		}
 
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 
 	}
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import genetic.Chromosome;
 import genetic.FitnessFunction;
+import genetic.Solution;
 import util.SaveCopy;
 
 /**
@@ -23,17 +24,21 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		super(fitnessFct, firstParent, secondParent);
 	}
 
-	protected Chromosome doCrossover(int[] parent1, int[] parent2) {
+	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
 		
-		int[] arrKid = new int[arrLength];
+		int[] arrKid = new int[lengthOfChromosome];
 		
+		int[] parent1 = par1.getGenesInPath();
+		int[] parent2 = par2.getGenesInPath();
+		
+				
 		HashMap<Integer, Integer> cycle = findCycle(parent1, parent2);
 		
 		//if there is no cycle, i.e. if two parents are equal,
 		//return the first parent
 		if(cycle == null) {
 			SaveCopy.copy(arrKid, parent1);
-			return new Chromosome(fitnessFct, arrKid);
+			return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 		}
 		
 		
@@ -46,13 +51,13 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		//fill in the remaining positions of the kid with the values from the 
 		//second parent, preserving the positions as well
 		
-		for(int i = 0; i < arrLength; i++) {
+		for(int i = 0; i < lengthOfChromosome; i++) {
 			if(!cycle.containsValue(parent2[i])) {
 				arrKid[i] = parent2[i];
 			} 
 		}
 		
-		return new Chromosome(fitnessFct, arrKid);
+		return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 	}
 	
 	private HashMap<Integer, Integer> findCycle(int[] parent1, int[] parent2) {
@@ -72,7 +77,7 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		while(parent1[startIndex] == parent2[startIndex]) {
 			startIndex++;
 			//if both parent are equal
-			if (startIndex == arrLength) {
+			if (startIndex == lengthOfChromosome) {
 				//then there is no subcycle, return null
 				return null;
 			}
