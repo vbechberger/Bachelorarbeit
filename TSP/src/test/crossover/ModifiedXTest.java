@@ -34,61 +34,61 @@ public class ModifiedXTest {
 	@Test
 	public void testModifiedXMiddleKid1() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 2);
+		crossover = new ModifiedX(fitnessFct, c1, c2, 2);
 		
 		int [] expected = new int[] {0,1,3,2,5,4,6,7};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testModifiedXMiddleKid2() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 2);
+		crossover = new ModifiedX(fitnessFct, c2, c1, 2);
 		
 		int [] expected = new int[] {0,3,1,4,5,2,7,6};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testModifiedXStartKid1() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 0);
+		crossover = new ModifiedX(fitnessFct, c1, c2, 0);
 		
 		int [] expected = new int[] {0,3,1,2,5,4,6,7};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 
 	@Test
 	public void testModifiedXStartKid2() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 0);
+		crossover = new ModifiedX(fitnessFct, c2, c1, 0);
 		
 		int [] expected = new int[] {0,1,4,5,3,2,7,6};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testModifiedXEndKid1() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 7);
+		crossover = new ModifiedX(fitnessFct, c1, c2, 7);
 		
 		int [] expected = new int[] {0,1,4,5,3,2,7,6};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testModifiedXEndKid2() {
 		
-		crossover = new CrossoverModifiedX(fitnessFct, c1, c2, 7);
+		crossover = new ModifiedX(fitnessFct, c2, c1, 7);
 		
 		int [] expected = new int[] {0,3,1,2,5,4,6,7};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 }

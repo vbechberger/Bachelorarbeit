@@ -7,18 +7,18 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 
-public class CrossoverPMX extends CrossoverTwoCutPoints {
+public class PMX extends CrossoverTwoCutPoints {
 
-	public CrossoverPMX(FitnessFunction fitnessFct, 
+	public PMX(FitnessFunction fitnessFct, 
 						Chromosome firstParent, Chromosome secondParent, 
 						int cutPoint1, int cutPoint2) {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		int[] arrKid = new int[lengthOfChromosome];
 
@@ -26,13 +26,13 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 		// fill in two kids by exchanging the genetic information between
 		// parents:
 		for (int i = 0; i < cutPoint; i++) {
-			arrKid[i] = parent2[i];
+			arrKid[i] = secondParent[i];
 		}
 		for (int i = cutPoint; i < cutPoint2 + 1; i++) {
-			arrKid[i] = parent1[i];
+			arrKid[i] = firstParent[i];
 		}
 		for (int i = cutPoint2 + 1; i < lengthOfChromosome; i++) {
-			arrKid[i] = parent2[i];
+			arrKid[i] = secondParent[i];
 		}
 
 		// handle the duplicates in kids:
@@ -44,7 +44,7 @@ public class CrossoverPMX extends CrossoverTwoCutPoints {
 		HashMap<Integer, Integer> mapping = new HashMap<Integer, Integer>();
 
 		for (int i = cutPoint; i < cutPoint2 + 1; i++) {
-			mapping.put(parent1[i], parent2[i]);
+			mapping.put(firstParent[i], secondParent[i]);
 			cut.add(arrKid[i]);
 		}
 

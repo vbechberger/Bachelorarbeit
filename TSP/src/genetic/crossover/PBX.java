@@ -7,17 +7,17 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 
-public class CrossoverPBX extends CrossoverRandomIndices {
+public class PBX extends CrossoverRandomIndices {
 
-	public CrossoverPBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
+	public PBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
 	@Override
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		int[] arrKid = new int[lengthOfChromosome];
 		
@@ -30,11 +30,11 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 		//first parent, to the offspring at the same positions
 		
 		for(Integer index: indices) {
-			arrKid[index] = parent1[index];
+			arrKid[index] = firstParent[index];
 			
 			//remember the cities, which were found at the selected positions in the 
 			//first parent	
-			selectedValues.add(parent1[index]);
+			selectedValues.add(firstParent[index]);
 		}
 		
 		
@@ -51,12 +51,12 @@ public class CrossoverPBX extends CrossoverRandomIndices {
 			
 			//jump over the values in the second parent, which were already 
 			//copied from the first parent
-			while (selectedValues.contains(parent2[nextIndexPar2])) {
+			while (selectedValues.contains(secondParent[nextIndexPar2])) {
 				nextIndexPar2++;
 			}
 			
 			//fill in the kid array
-			arrKid[i] = parent2[nextIndexPar2];
+			arrKid[i] = secondParent[nextIndexPar2];
 			nextIndexPar2++;
 		}
 		

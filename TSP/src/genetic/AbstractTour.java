@@ -11,13 +11,13 @@ public abstract class AbstractTour {
 	
 	protected int[] tour;
 	
-	protected final int length;
+	protected final int tourLength;
 
 	public AbstractTour(int dimension, int[] tour) {
 		
-		this.length = dimension;		
+		this.tourLength = dimension;		
 		checkTour(tour);
-		this.tour = new int[length];		
+		this.tour = new int[tourLength];		
 		SaveCopy.copy(this.tour, tour);	
 	}
 	
@@ -25,7 +25,7 @@ public abstract class AbstractTour {
 	
 	
 	private void checkTour(int[] tour) {
-		if(tour.length != this.length) {
+		if(tour.length != this.tourLength) {
 			throw new IllegalArgumentException("The given tour is too short!");
 		}
 		if(!isFeasibleTour(tour)) {
@@ -42,7 +42,7 @@ public abstract class AbstractTour {
 
 		Collections.sort(tempTour);
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < tourLength; i++) {
 			if (tempTour.get(i) != i) {
 				return false;
 			}
@@ -59,7 +59,7 @@ public abstract class AbstractTour {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + length;
+		result = prime * result + tourLength;
 		result = prime * result + Arrays.hashCode(tour);
 		return result;
 	}
@@ -74,7 +74,7 @@ public abstract class AbstractTour {
 		if (getClass() != obj.getClass())
 			return false;
 		AbstractTour other = (AbstractTour) obj;
-		if (length != other.length)
+		if (tourLength != other.tourLength)
 			return false;
 		if (!Arrays.equals(tour, other.tour))
 			return false;
@@ -85,7 +85,11 @@ public abstract class AbstractTour {
 	/**Getter methods*/
 	
 	public int getLength() {
-		return this.length;
+		return this.tourLength;
+	}
+	
+	public int[] getTourAsArr() {
+		return this.tour;
 	}
 	
 	

@@ -28,5 +28,19 @@ public class TourTest {
 		
 		Assert.assertArrayEquals(expectedPath, pathTour.transformIntoAdj().tour);
 	}
+	
+	@Test	
+	public void chechIfAdjTourIsHamiltonCycle() {
+		int[] adjRepr = new int[]{1, 4, 0, 2, 3};
+		
+		new AdjTour(5, adjRepr);		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)	
+	public void chechIfAdjTourIsNotHamiltonCycle() {
+		int[] adjRepr = new int[]{3, 4, 0, 2, 1};
+		
+		new AdjTour(5, adjRepr);		
+	}
 
 }

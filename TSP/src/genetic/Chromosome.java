@@ -70,8 +70,12 @@ public class Chromosome implements Comparable<Chromosome>{
 		return this.genes;
 	}
 	
-	public int[] getGenesInPath() {
+	public int[] getGenesAsArray() {
 		return this.genes.getTour().getInPathAsArr();
+	}
+	
+	public PathTour getGenesAsPathTour() {
+		return this.genes.getTour();
 	}
 	
 	
@@ -162,7 +166,7 @@ public class Chromosome implements Comparable<Chromosome>{
     }
 	
 	public void print() {
-		Printer.printArray(this.getGenesInPath());
+		Printer.printArray(this.getGenesAsArray());
 	}
 
 }

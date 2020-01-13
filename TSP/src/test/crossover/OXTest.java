@@ -9,7 +9,7 @@ import genetic.FitnessFunction;
 import genetic.Solution;
 import genetic.crossover.PathReprCrossover;
 import genetic.crossover.Crossover;
-import genetic.crossover.CrossoverOX;
+import genetic.crossover.OX;
 import test.util.DummyFitnessFct;
 import util.Printer;
 
@@ -36,61 +36,61 @@ public class OXTest {
 	@Test
 	public void testOXMiddleKid1() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 2, 4);
+		crossover = new OX(fitnessFct, c1, c2, 2, 4);
 		
 		int [] expected = new int[] {1,2,4,5,3,6,7,0};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testOXMiddleKid2() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 2, 4);
+		crossover = new OX(fitnessFct, c2, c1, 2, 4);
 		
 		int [] expected = new int[] {4,3,1,2,5,7,6,0};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testOXEndKid1() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 5, 7);
+		crossover = new OX(fitnessFct, c1, c2, 5, 7);
 		
 		int [] expected = new int[] {0,3,1,5,4,2,7,6};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testOXEndKid2() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 5, 7);
+		crossover = new OX(fitnessFct, c2, c1, 5, 7);
 		
 		int [] expected = new int[] {0,1,5,3,2,4,6,7};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testOXStartKid1() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 0, 2);
+		crossover = new OX(fitnessFct, c1, c2, 0, 2);
 		
 		int [] expected = new int[] {0,1,4,2,5,6,7,3};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testOXStartKid2() {
 		
-		crossover = new CrossoverOX(fitnessFct, c1, c2, 0, 2);
+		crossover = new OX(fitnessFct, c2, c1, 0, 2);
 		
 		int [] expected = new int[] {0,3,1,5,2,7,6,4};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	//TODO:I do everything locally here, perhaps to optimize
@@ -103,11 +103,11 @@ public class OXTest {
 		int [] tour2 = new int[] {0,3,7,2,5,4,6,1};
 		Chromosome c2 = new Chromosome(fitnessFct, new Solution(8, tour2));
 		
-		PathReprCrossover crossover = new CrossoverOX(fitnessFct, c1, c2, 2, 6);
+		PathReprCrossover crossover = new OX(fitnessFct, c1, c2, 2, 6);
 		
 		int [] expected = new int[] {0,6,4,5,3,2,7,1};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 
 }

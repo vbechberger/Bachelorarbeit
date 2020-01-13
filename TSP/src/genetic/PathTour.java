@@ -11,9 +11,9 @@ public class PathTour extends AbstractTour {
 	
 	public AdjTour transformIntoAdj() {
 		
-		int[] adjRepr = new int[length];
+		int[] adjRepr = new int[tourLength];
 		
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < tourLength; i++) {
 			int indexForAdj = tour[i];
 			
 			/* In the path representation, 
@@ -21,7 +21,7 @@ public class PathTour extends AbstractTour {
 			 * with the first city which stands at the index 0
 			 * to build the Hamilton cycle.
 			 */
-			if(i == length - 1) {
+			if(i == tourLength - 1) {
 				adjRepr[indexForAdj] = tour[0];
 			} else {
 				adjRepr[indexForAdj] = tour[i + 1];
@@ -29,7 +29,7 @@ public class PathTour extends AbstractTour {
 					
 		}
 		
-		return new AdjTour(length, adjRepr);
+		return new AdjTour(tourLength, adjRepr);
 		
 	}
 	
@@ -42,7 +42,7 @@ public class PathTour extends AbstractTour {
 		
 		checkIndexValidity(cityIndex);				
 		
-		int indexNeigborLeft = (cityIndex == 0) ? length - 1 : cityIndex - 1;
+		int indexNeigborLeft = (cityIndex == 0) ? tourLength - 1 : cityIndex - 1;
 					
 		return this.tour[indexNeigborLeft];
 	}
@@ -57,7 +57,7 @@ public class PathTour extends AbstractTour {
 		
 		checkIndexValidity(cityIndex);				
 				
-		int indexNeigborRight = (cityIndex == length - 1) ? 0 : cityIndex + 1;
+		int indexNeigborRight = (cityIndex == tourLength - 1) ? 0 : cityIndex + 1;
 		
 		return this.tour[indexNeigborRight];
 	}
@@ -83,7 +83,7 @@ public class PathTour extends AbstractTour {
 	 * @return
 	 */
 	public int indexOf(int city) {
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < tourLength; i++) {
 			if(this.tour[i] == city) {
 				return i;
 			}
@@ -97,12 +97,11 @@ public class PathTour extends AbstractTour {
 	 * @param cityIndex
 	 */
 	private void checkIndexValidity(int cityIndex) {
-		if(cityIndex < 0 || cityIndex > length - 1) {
+		if(cityIndex < 0 || cityIndex > tourLength - 1) {
 			throw new IllegalArgumentException("The given index " 
 					+ cityIndex + " is not in the tour");
 		}
 	}
-	
 	
 	
 	@Override

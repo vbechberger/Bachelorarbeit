@@ -20,6 +20,11 @@ public class Solution {
 			
 	}
 	
+	public Solution(int dimension, PathTour path) {
+		
+		this.dimension = dimension;	
+		this.tour = path;
+	}
 	public int getDimension() {
 		return dimension;
 	}

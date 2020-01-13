@@ -43,7 +43,7 @@ public class ShiftTest {
 
 		int [] expected = new int[] {5,2,6,0,8,3,4,1,7};
 
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesAsArray());
 	}
 
 }

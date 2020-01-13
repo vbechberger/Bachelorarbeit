@@ -15,29 +15,29 @@ import util.SaveCopy;
  * @author vbechberger
  *
  */
-public class CrossoverCycleX extends CrossoverCycleSubset {
+public class CycleX extends CrossoverCycleSubset {
 	
 
-	public CrossoverCycleX(FitnessFunction fitnessFct, 
+	public CycleX(FitnessFunction fitnessFct, 
 							Chromosome firstParent, 
 							Chromosome secondParent) {
 		super(fitnessFct, firstParent, secondParent);
 	}
 
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
 		int[] arrKid = new int[lengthOfChromosome];
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 				
-		HashMap<Integer, Integer> cycle = findCycle(parent1, parent2);
+		HashMap<Integer, Integer> cycle = findCycle(firstParent, secondParent);
 		
 		//if there is no cycle, i.e. if two parents are equal,
 		//return the first parent
 		if(cycle == null) {
-			SaveCopy.copy(arrKid, parent1);
+			SaveCopy.copy(arrKid, firstParent);
 			return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, arrKid));
 		}
 		
@@ -52,8 +52,8 @@ public class CrossoverCycleX extends CrossoverCycleSubset {
 		//second parent, preserving the positions as well
 		
 		for(int i = 0; i < lengthOfChromosome; i++) {
-			if(!cycle.containsValue(parent2[i])) {
-				arrKid[i] = parent2[i];
+			if(!cycle.containsValue(secondParent[i])) {
+				arrKid[i] = secondParent[i];
 			} 
 		}
 		

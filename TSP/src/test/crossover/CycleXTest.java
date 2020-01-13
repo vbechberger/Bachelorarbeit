@@ -8,7 +8,7 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 import genetic.crossover.Crossover;
-import genetic.crossover.CrossoverCycleX;
+import genetic.crossover.CycleX;
 import test.util.DummyFitnessFct;
 import util.Printer;
 
@@ -34,20 +34,20 @@ public class CycleXTest {
 
 	@Test
 	public void testCycleXKid1() {
-		crossover = new CrossoverCycleX(fitnessFct, c1, c2);
+		crossover = new CycleX(fitnessFct, c1, c2);
 		
 		int [] expected = new int[] {0,2,1,5,3,4,6,7};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
 	public void testCycleXKid2() {
-		crossover = new CrossoverCycleX(fitnessFct, c1, c2);
+		crossover = new CycleX(fitnessFct, c2, c1);
 		
 		int [] expected = new int[] {0,3,4,2,5,1,7,6};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 	
 	@Test
@@ -56,11 +56,11 @@ public class CycleXTest {
 		int [] tour2 = new int[] {0,2,4,5,3,1,7,6};
 		Chromosome c2 = new Chromosome(fitnessFct, new Solution(8, tour2));
 		
-		crossover = new CrossoverCycleX(fitnessFct, c1, c2);
+		crossover = new CycleX(fitnessFct, c1, c2);
 		
 		int [] expected = new int[] {0,2,4,5,3,1,7,6};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 	}
 
 }

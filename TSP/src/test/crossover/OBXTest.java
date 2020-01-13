@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import genetic.*;
 import genetic.crossover.Crossover;
-import genetic.crossover.CrossoverOBX;
+import genetic.crossover.OBX;
 import test.util.DummyFitnessFct;
 import util.*;
 
@@ -44,22 +44,22 @@ public class OBXTest {
 	@Test
 	public void testOBXKid1() {
 		
-		crossover = new CrossoverOBX(fitnessFct, c1, c2, indices);
+		crossover = new OBX(fitnessFct, c1, c2, indices);
 		
 		int [] expected = new int[] {0,4,1,3,5,2,6,7};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testOBXKid2() {
 		
-		crossover = new CrossoverOBX(fitnessFct, c1, c2, indices);
+		crossover = new OBX(fitnessFct, c2, c1, indices);
 		
 		int [] expected = new int[] {0,1,5,4,3,2,7,6};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 

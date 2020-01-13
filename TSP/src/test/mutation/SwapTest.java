@@ -38,7 +38,7 @@ public class SwapTest {
 		
 		int [] expected = new int[] {0,1,3,5,4,2,7,6};
 		
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesAsArray());
 		
 	}
 	

@@ -11,7 +11,7 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 import genetic.crossover.Crossover;
-import genetic.crossover.CrossoverPBX;
+import genetic.crossover.PBX;
 import test.util.DummyFitnessFct;
 import util.Printer;
 
@@ -42,22 +42,22 @@ public class PBXTest {
 	@Test
 	public void testPBXKid1() {
 		
-		crossover = new CrossoverPBX(fitnessFct, c1, c2, indices);
+		crossover = new PBX(fitnessFct, c1, c2, indices);
 		
 		int [] expected = new int[] {0,1,4,5,3,2,6,7};
-		Printer.printArray(crossover.getKid1().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 
 	@Test
 	public void testPBXKid2() {
 		
-		crossover = new CrossoverPBX(fitnessFct, c1, c2, indices);
+		crossover = new PBX(fitnessFct, c2, c1, indices);
 		
 		int [] expected = new int[] {0,3,1,2,5,4,7,6};
-		Printer.printArray(crossover.getKid2().getGenesInPath());
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Printer.printArray(crossover.getKid().getGenesAsArray());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 }

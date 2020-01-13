@@ -6,25 +6,25 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 
-public class CrossoverLOX extends CrossoverTwoCutPoints {
+public class LOX extends CrossoverTwoCutPoints {
 
-	public CrossoverLOX(FitnessFunction fitnessFct, 
+	public LOX(FitnessFunction fitnessFct, 
 						Chromosome firstParent, 
 						Chromosome secondParent, 
 						int cutPoint1, int cutPoint2) {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		//TODO: the same thing perhaps in othe operators
 		//if the cut interval includes the whole chromosome,
 		//return the first parent
 		if ((cutPoint == 0) && (cutPoint2 == (lengthOfChromosome - 1))) {
-			return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, parent1));
+			return new Chromosome(fitnessFct, new Solution(lengthOfChromosome, firstParent));
 		}
 		
 		int[] arrKid = new int[lengthOfChromosome];
@@ -35,9 +35,9 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 		// values between the cut points are copied to the offspring from the
 		// first parent at the same positions
 		for (int i = cutPoint; i < cutPoint2 + 1; i++) {
-			arrKid[i] = parent1[i];
+			arrKid[i] = firstParent[i];
 			// save the values between cut points of the first parent
-			cut.add(parent1[i]);
+			cut.add(firstParent[i]);
 		}
 
 		// the remaining positions of the offspring are filled by considering
@@ -55,7 +55,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 			
 			//if the candidate city has not been used yet, 
 			//then this city goes to the offspring 
-			if (!cut.contains(parent2[i])) {
+			if (!cut.contains(secondParent[i])) {
 				
 				//if we are at the position in the cut, 
 				//which is already filled in the offspring
@@ -69,7 +69,7 @@ public class CrossoverLOX extends CrossoverTwoCutPoints {
 					}
 				}
 				
-				arrKid[pos] = parent2[i];				
+				arrKid[pos] = secondParent[i];				
 				pos++;
 			}
 		}

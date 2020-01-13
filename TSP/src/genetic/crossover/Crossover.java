@@ -8,8 +8,7 @@ public abstract class Crossover {
 	protected final int lengthOfChromosome;
 	
 	protected FitnessFunction fitnessFct;
-	protected Chromosome kid1;
-	protected Chromosome kid2;
+	protected Chromosome kid;
 	
 	protected Chromosome parent1;
 	protected Chromosome parent2;
@@ -29,28 +28,17 @@ public abstract class Crossover {
 		parent2 = secondParent;
 	}
 	
-	protected abstract Chromosome doCrossover(Chromosome parent1, Chromosome parent2);
+	protected abstract Chromosome doCrossover();
 
 	/* Getter methods */
-	public Chromosome getKid1() {
+	public Chromosome getKid() {
 		
-		kid1 = doCrossover(parent1, parent2);
+		kid = doCrossover();
 		
-		if (kid1 == null) {
+		if (kid == null) {
 			throw new RuntimeException("Crossover was not successful. There exists no kid!");
 		}
-		return kid1;
-	}
-
-	public Chromosome getKid2() {
-		
-		kid2 = doCrossover(parent2, parent1);
-		
-		if (kid2 == null) {
-			throw new RuntimeException("Crossover was not successful. There exists no kid!");
-		}
-	
-		return kid2;
+		return kid;
 	}
 
 }

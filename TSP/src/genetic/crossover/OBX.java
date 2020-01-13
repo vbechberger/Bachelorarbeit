@@ -28,20 +28,20 @@ import util.SaveCopy;
  * @author valeriyabechberger
  *
  */
-public class CrossoverOBX extends CrossoverRandomIndices {
+public class OBX extends CrossoverRandomIndices {
 
-	public CrossoverOBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
+	public OBX(FitnessFunction fitnessFct, Chromosome firstParent, Chromosome secondParent, Set<Integer> indices) {
 		super(fitnessFct, firstParent, secondParent, indices);
 	}
 
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		int[] arrKid = new int[lengthOfChromosome];
 
-		SaveCopy.copy(arrKid, parent2);
+		SaveCopy.copy(arrKid, secondParent);
 
 		// find the elements which stand at the given positions in the first
 		// parent,
@@ -50,13 +50,13 @@ public class CrossoverOBX extends CrossoverRandomIndices {
 
 		int count = 0;
 		for(Integer index: indices) {
-			selected[count] = parent1[index];
+			selected[count] = firstParent[index];
 			count++;
 		}
 		// find at which indices these elements stand in the second parent
 		ArrayList<Integer> parent2List = new ArrayList<Integer>();
 
-		SaveCopy.copy(parent2List, parent2);
+		SaveCopy.copy(parent2List, secondParent);
 
 		ArrayList<Integer> indicesInParent2 = new ArrayList<Integer>();
 		for (int i = 0; i < selected.length; i++) {

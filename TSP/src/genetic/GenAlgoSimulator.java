@@ -4,12 +4,12 @@ import java.util.Set;
 import java.util.HashSet;
 
 import genetic.crossover.PathReprCrossover;
-import genetic.crossover.CrossoverCycleX;
-import genetic.crossover.CrossoverModifiedX;
-import genetic.crossover.CrossoverOBX;
-import genetic.crossover.CrossoverOX;
-import genetic.crossover.CrossoverPBX;
-import genetic.crossover.CrossoverPMX;
+import genetic.crossover.CycleX;
+import genetic.crossover.ModifiedX;
+import genetic.crossover.OBX;
+import genetic.crossover.OX;
+import genetic.crossover.PBX;
+import genetic.crossover.PMX;
 import genetic.crossover.CrossoverType;
 import genetic.mutation.Mutation;
 import genetic.mutation.MutationScramble;
@@ -100,12 +100,12 @@ public class GenAlgoSimulator {
 			double randomValue = rangeMin + (rangeMax - rangeMin) * random.nextDouble();
 		
 			if (randomValue <= mutationRate * 100) {
-				setMutation(mutationType, fitnessFct, crossover.getKid1());
+				setMutation(mutationType, fitnessFct, crossover.getKid());
 				mutation.start();
 			}
 			/* 5) Put the kid into the population*/
 			if (mutation == null) {
-				population.addChromosome(crossover.getKid1());
+				population.addChromosome(crossover.getKid());
 			} else {
 				population.addChromosome(mutation.getMutant());
 			}
@@ -175,7 +175,7 @@ public class GenAlgoSimulator {
         	
         	int cutPoint = random.nextInt(maxIndexValue - minIndexValue + 1);
         			
-            crossover = new CrossoverModifiedX(fitnessFct, firstChromosome, secChromosome, cutPoint);
+            crossover = new ModifiedX(fitnessFct, firstChromosome, secChromosome, cutPoint);
             break;
         }
         case ORDERBASED: {
@@ -194,14 +194,14 @@ public class GenAlgoSimulator {
         		indices.add(nextIndex);
         	}
         	
-        	crossover = new CrossoverOBX(fitnessFct, firstChromosome, secChromosome, indices);
+        	crossover = new OBX(fitnessFct, firstChromosome, secChromosome, indices);
         	break;
         }
         case ORDER: {
         	
         	int cutPoint1 = random.nextInt(maxIndexValue - minIndexValue + 1);
         	int cutPoint2 = new Random(41).nextInt(maxIndexValue - minIndexValue + 1);
-        	crossover = new CrossoverOX(fitnessFct, firstChromosome, secChromosome, cutPoint1, cutPoint2);
+        	crossover = new OX(fitnessFct, firstChromosome, secChromosome, cutPoint1, cutPoint2);
         	break;
         }	
         case POSITIONBASED: { 
@@ -220,19 +220,19 @@ public class GenAlgoSimulator {
         		indices.add(nextIndex);
         	}
         	
-        	crossover = new CrossoverPBX(fitnessFct, firstChromosome, secChromosome, indices);
+        	crossover = new PBX(fitnessFct, firstChromosome, secChromosome, indices);
         	break;
         }	
         case PARTIALLYMAPPED: { 
         	
         	int cutPoint1 = random.nextInt(maxIndexValue - minIndexValue + 1);
         	int cutPoint2 = new Random(41).nextInt(maxIndexValue - minIndexValue + 1);
-        	crossover = new CrossoverPMX(fitnessFct, firstChromosome, secChromosome, cutPoint1, cutPoint2);
+        	crossover = new PMX(fitnessFct, firstChromosome, secChromosome, cutPoint1, cutPoint2);
         	break;
         }	
         case CYCLE: { 
         	
-        	crossover = new CrossoverCycleX(fitnessFct, firstChromosome, secChromosome);
+        	crossover = new CycleX(fitnessFct, firstChromosome, secChromosome);
         	break;
         }
         default:

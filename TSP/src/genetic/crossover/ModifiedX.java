@@ -6,9 +6,9 @@ import genetic.FitnessFunction;
 import genetic.Solution;
 import util.SaveCopy;
 
-public class CrossoverModifiedX extends CrossoverCutPoint {
+public class ModifiedX extends CrossoverCutPoint {
 
-	public CrossoverModifiedX(FitnessFunction fitnessFct, 
+	public ModifiedX(FitnessFunction fitnessFct, 
 								Chromosome firstParent, 
 								Chromosome secondParent, 
 								int cutPoint) {
@@ -16,19 +16,19 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 	}
 
 	@Override
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		int[] arrKid = new int[lengthOfChromosome];
 		
 		//if the cut point is the first or the last index
 		//then we just copy the corresponding parent
 		if (cutPoint == 0) {
-			SaveCopy.copy(arrKid, parent2);
+			SaveCopy.copy(arrKid, secondParent);
 		} else if (cutPoint == lengthOfChromosome - 1) {
-			SaveCopy.copy(arrKid, parent1);
+			SaveCopy.copy(arrKid, firstParent);
 		} else {
 
 			//make a set with cities from the first parent,
@@ -39,7 +39,7 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 			//fill in the offspring with the cities from the first parent
 			//from the beginning till the cut point
 			for (int i = 0; i < cutPoint; i++) {
-				arrKid[i] = parent1[i];
+				arrKid[i] = firstParent[i];
 				// fill in the set
 				cut.add(arrKid[i]);
 			}
@@ -52,9 +52,9 @@ public class CrossoverModifiedX extends CrossoverCutPoint {
 				//if the next city in the second parent has 
 				//not been taken from the first parent, i.e.
 				//this city did not stand in the 1st parent before the cut point
-				if (!cut.contains(parent2[i])) {
+				if (!cut.contains(secondParent[i])) {
 					//then it goes to the offspring
-					arrKid[pos] = parent2[i];
+					arrKid[pos] = secondParent[i];
 					pos++;
 				}
 				//otherwise we ignore it and go to the next city in the 2nd parent

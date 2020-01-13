@@ -11,7 +11,7 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 import genetic.crossover.Crossover;
-import genetic.crossover.CrossoverPMX;
+import genetic.crossover.PMX;
 import test.util.DummyFitnessFct;
 
 public class PMXTest {
@@ -50,62 +50,62 @@ public class PMXTest {
 	@Test
 	public void testPMXKid1CutMiddle() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 2, 4);		
+		crossover = new PMX(fitnessFct, c1, c2, 2, 4);		
 		
 		int [] expected = new int[] {0,2,4,5,3,1,6,7};
 		
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testPMXKid2CutMiddle() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 2, 4);		
+		crossover = new PMX(fitnessFct, c2, c1, 2, 4);		
 		
 		int [] expected = new int[] {0,4,1,2,5,3,7,6};
 		
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testPMXKid1IndexEnd() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 5, 7);		
+		crossover = new PMX(fitnessFct, c1, c2, 5, 7);		
 		
 		int [] expected = new int[] {0,3,1,4,5,2,7,6};
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testPMXKid2IndexEnd() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 5, 7);		
+		crossover = new PMX(fitnessFct, c2, c1, 5, 7);		
 		
 		int [] expected = new int[] {0,1,2,5,3,4,6,7};
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testPMXKid1IndexStart() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 0, 2);		
+		crossover = new PMX(fitnessFct, c1, c2, 0, 2);		
 		
 		int [] expected = new int[] {0,1,4,2,5,3,6,7};
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
 	@Test
 	public void testPMXKid2IndexStart() {
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 0, 2);		
+		crossover = new PMX(fitnessFct, c2, c1, 0, 2);		
 		
 		int [] expected = new int[] {0,3,1,5,4,2,7,6};
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());		
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());		
 	}
 	
 	
@@ -120,10 +120,10 @@ public class PMXTest {
 		
 		
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 1, 3);		
+		crossover = new PMX(fitnessFct, c1, c2, 1, 3);		
 		
 		int [] expected = new int[] {4,5,1,2,3,0};
-		Assert.assertArrayEquals(expected, crossover.getKid1().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 	
@@ -136,10 +136,10 @@ public class PMXTest {
 		Chromosome c2 = new Chromosome(fitnessFct, new Solution(6, new int[] {1,2,5,4,3,0}));
 		
 		
-		crossover = new CrossoverPMX(fitnessFct, c1, c2, 1, 3);		
+		crossover = new PMX(fitnessFct, c2, c1, 1, 3);		
 		
 		int [] expected = new int[] {0,2,5,4,1,3};
-		Assert.assertArrayEquals(expected, crossover.getKid2().getGenesInPath());
+		Assert.assertArrayEquals(expected, crossover.getKid().getGenesAsArray());
 		
 	}
 

@@ -33,7 +33,7 @@ public class ScrambleTest {
 		
 		int [] expected = new int[] {0,4,1,2,7,3,5,6};
 		
-		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesInPath());
+		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesAsArray());
 	}
 
 }

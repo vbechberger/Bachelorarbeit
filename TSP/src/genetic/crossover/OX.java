@@ -6,19 +6,19 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 
-public class CrossoverOX extends CrossoverTwoCutPoints {
+public class OX extends CrossoverTwoCutPoints {
 
-	public CrossoverOX(FitnessFunction fitnessFct, 
+	public OX(FitnessFunction fitnessFct, 
 						Chromosome firstParent, 
 						Chromosome secondParent, 
 						int cutPoint1, int cutPoint2) {
 		super(fitnessFct, firstParent, secondParent, cutPoint1, cutPoint2);
 	}
 
-	protected Chromosome doCrossover(Chromosome par1, Chromosome par2) {
+	protected Chromosome doCrossover() {
 		
-		int[] parent1 = par1.getGenesInPath();
-		int[] parent2 = par2.getGenesInPath();
+		int[] firstParent = parent1.getTourAsArr();
+		int[] secondParent = parent2.getTourAsArr();
 		
 		int[] arrKid = new int[lengthOfChromosome];
 
@@ -28,10 +28,10 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 		// values between the cut points are copied to the offspring from the
 		// first parent at the same positions
 		for (int i = cutPoint; i < cutPoint2 + 1; i++) {
-			arrKid[i] = parent1[i];
+			arrKid[i] = firstParent[i];
 
 			// save the values between cut points of the first parent
-			cut.add(parent1[i]);
+			cut.add(firstParent[i]);
 		}
 
 		// the remaining positions of the offspring are filled by considering
@@ -47,8 +47,8 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 		}
 		// fill in the offspring
 		for (int i = cutPoint2 + 1; i < lengthOfChromosome; i++) {
-			if (!cut.contains(parent2[i])) {
-				arrKid[pos] = parent2[i];
+			if (!cut.contains(secondParent[i])) {
+				arrKid[pos] = secondParent[i];
 				// if the tail part of the offspring is filled, start from the
 				// beginning
 				if (pos == lengthOfChromosome - 1) {
@@ -59,8 +59,8 @@ public class CrossoverOX extends CrossoverTwoCutPoints {
 			}
 		}
 		for (int i = 0; i < cutPoint2 + 1; i++) {
-			if (!cut.contains(parent2[i])) {
-				arrKid[pos] = parent2[i];
+			if (!cut.contains(secondParent[i])) {
+				arrKid[pos] = secondParent[i];
 
 				// if the tail part of the offspring is filled, start from the
 				// beginning
