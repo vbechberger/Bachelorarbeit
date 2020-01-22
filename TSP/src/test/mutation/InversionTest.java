@@ -8,10 +8,10 @@ import genetic.Chromosome;
 import genetic.FitnessFunction;
 import genetic.Solution;
 import genetic.mutation.Mutation;
-import genetic.mutation.MutationScramble;
+import genetic.mutation.MutationInversion;
 import test.util.DummyFitnessFct;
 
-public class ScrambleTest {
+public class InversionTest {
 	
 	private static FitnessFunction fitnessFct;
 	private Mutation mutation;
@@ -20,55 +20,55 @@ public class ScrambleTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		int [] tour = new int[] {0,1,4,5,3,2,7,6};
+		int [] tour = new int[] {0,1,4,5,3,2};
 		fitnessFct = new DummyFitnessFct(tour.length);
-		kid = new Chromosome(fitnessFct, new Solution(8, tour));
+		kid = new Chromosome(fitnessFct, new Solution(6, tour));
 
 	}
 
 	@Test
-	public void testScramble() {
-		mutation = new MutationScramble(fitnessFct, kid, 1, 6);		
+	public void testInversion() {
+		mutation = new MutationInversion(fitnessFct, kid, 1, 4);		
 		mutation.start();
 		
-		int [] expected = new int[] {0,4,1,2,7,3,5,6};
+		int [] expected = new int[] {0,3,5,4,1,2};
 		
 		Assert.assertArrayEquals(expected, mutation.getMutant().getGenesAsArray());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testIndex2SmallerIndex1() {
-		mutation = new MutationScramble(fitnessFct, kid, 1, 0);		
+	public void testInversionIndex2SmallerIndex1() {
+		mutation = new MutationInversion(fitnessFct, kid, 1, 0);		
 		mutation.start();
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testIndex2EqualIndex1() {
-		mutation = new MutationScramble(fitnessFct, kid, 1, 1);		
+	public void testInversionIndex2EqualIndex1() {
+		mutation = new MutationInversion(fitnessFct, kid, 1, 1);		
 		mutation.start();
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testIndex1Negativ() {
-		mutation = new MutationScramble(fitnessFct, kid, -1, 1);		
+	public void testInversionIndex1Negativ() {
+		mutation = new MutationInversion(fitnessFct, kid, -1, 1);		
 		mutation.start();
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testIndex1TooLarge() {
-		mutation = new MutationScramble(fitnessFct, kid, 8, 1);		
+	public void testInversionIndex1TooLarge() {
+		mutation = new MutationInversion(fitnessFct, kid, 8, 1);		
 		mutation.start();
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testIndex2Negativ() {
-		mutation = new MutationScramble(fitnessFct, kid, 0, -1);		
+	public void testInversionIndex2Negativ() {
+		mutation = new MutationInversion(fitnessFct, kid, 0, -1);		
 		mutation.start();
 	}
 	
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void testIndex2TooLarge() {
-		mutation = new MutationScramble(fitnessFct, kid, 0, 10);		
+	public void testInversionIndex2TooLarge() {
+		mutation = new MutationInversion(fitnessFct, kid, 0, 10);		
 		mutation.start();
 	}
 
