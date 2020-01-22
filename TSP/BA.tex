@@ -242,12 +242,98 @@ Mutation operators for the TSP make random permutations of the cities and theref
 \end{figure}
 
 \subsection{Swap mutation}
+This mutation operator \cite{potvin1996genetic} modifies the tour slightly, only exchanging the positions between of two cities. Given the chromosome 0,1,4,5,3,2 the swap mutation between the cities 4 and 3, which occupy the positions 2 and 4 accordingly, transforms the chromosome into 0,1,3,5,4,2(See Figure \ref{swap_mutation}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{swap_mutation}
+	\caption{Swap mutation for the chromosome 0,1,4,5,3,2 with the swap for the cities 1 and 3.}
+	\label{swap_mutation}
+\end{figure}
+
 \subsection{Scramble mutation}
+
+This mutation operator \cite{potvin1996genetic} takes two indices, which define two cut points. The cities between and inclusive these cut points are randomly permuted. Given the chromosome 0,1,4,5,3,2 the scramble mutation for the cut points 1 and 4 can generate, for instance, the chromosome 0,3,5,1,4,2 (see Figure \ref{scramble_mutation}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{scramble_mutation}
+	\caption{Scramble mutation for the chromosome 0,1,4,5,3,2 with the cut points 1 and 4.}
+	\label{scramble_mutation}
+\end{figure}
+
 \subsection{Shift mutation}
 
-\subsection{Local hill-climbing: 2-opt (Inversion mutation), 3-opt}
-\subsection{Insertion mutation}
+This mutation operator has two random components: a random city and a random integer. The chosen city will be shifted to the left or to the right, depending which shift is used. The chosen integer corresponds to the number of positions, at which the chosen city will be shifted. Given the chromosome 0,1,4,5,3,2. Let assume, that a random city is the city 1 and a random integer is 3. We will use the right shift. Therefore, the city 1 will be shifted to the right at 3 positions (see Figure \ref{shift_mutation}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{shift_mutation}
+	\caption{Right shift mutation for the chromosome 0,1,4,5,3,2 with a random city 1 and a random integer 3.}
+	\label{shift_mutation}
+\end{figure}
+
+If the chosen integer is greater than the number of remaining steps to the right (or to the left, if the left shift is chosen), than the chromosome is assumed to be a torus and the shift begins from the corresponding another end of the chromosome. For instance, if a random integer was 5 in the example above, than the city 1 will be at the position 0 (see Figure \ref{shift_mutation_torus}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{shift_mutation_torus}
+	\caption{Right shift mutation for the chromosome 0,1,4,5,3,2 with a random city 1 and a random integer 5.}
+	\label{shift_mutation_torus}
+\end{figure}
+
+\subsection{Inversion mutation}
+
+This mutation operator \cite{akay2013recent} takes two indices, which define two cut points. The cities within them(inclusively) are inverted. Given the chromosome 0,1,4,5,3,2 the inversion mutation for the cut points 1 and 4 generates the chromosome 0,3,5,4,1,2 (see Figure \ref{inversion_mutation}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{inversion_mutation}
+	\caption{Inversion mutation for the chromosome 0,1,4,5,3,2 and cut points 1 and 4.}
+	\label{inversion_mutation}
+\end{figure}
+
+\subsection{Insertion mutation (2-opt exchange)}
+This mutation operator \cite{akay2013recent} takes two indices, which define two cut points. The cities which occupy the positions between the first cut point(exclusively) and the second cut point(inclusively) are shifted one position to the left, i.e. back to the beginning. The city which occupied the index, which corresponds to the first cut point, now goes at the index, which corresponds to the second cut point, i.e. this stands after the set of shifted cities now. Given the chromosome 0,1,4,5,3,2 the insertion mutation for the cut points 1 and 4 generates the chromosome 0,4,5,3,1,2 (see figure \ref{insertion_mutation}).
+It corresponds to a single 2-opt exchange...
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{insertion_mutation}
+	\caption{Insertion mutation for the chromosome 0,1,4,5,3,2 and cut points 1 and 4.}
+	\label{insertion_mutation}
+\end{figure}
+
+\subsection{3-opt exchange}
+
+In 2-opt exchange we remove 2 links from the tour, this way obtaining 2 open segments, which we can manipulate and combine them to get a new tour. In 3-opt we remove 3 links, obtaining 3 segments to manipulate. This gives us eight combinations (including the tour identical with the initial one). These eight combinations include: 1 equivalent original tour,
+3 cases which correspond to a single 2 -opt exchange, 3 cases which correspond to to two subsequent 2-opt exchanges and the last case, which is equivalent to three subsequent 2-opt moves. Therefore, we do not implement 3-opt exchange explicitly, as it will automatically happen while using 2-opt exchange subsequently (see figures \ref{toDo1} and \ref{toDo2} )
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{toDo1}
+	\caption{TODO1}
+	\label{toDo1}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{toDo2}
+	\caption{TODO2.}
+	\label{toDo2}
+\end{figure}
+
 \subsection{Displacement mutation}
+
+This mutation operator \cite{akay2013recent} takes three indices, which define three cut points. The cities which occupy the positions between the first cut point(inclusively) and the second cut point(inclusively) are shifted at the position after the third cut point.  It means that the cities between the second cut point(exclusively) and the third cut point(inclusively) go automatically to the beginning, where the first cut point was. Given the chromosome 0,1,4,5,3,2,7,6 the displacement mutation for the cut points 1, 4 and 6 generates the chromosome 0,2,7,1,4,5,3,6 (see figure \ref{displacement_mutation}).
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{displacement_mutation}
+	\caption{Displacement mutation for the chromosome 0,1,4,5,3,2,7,6 and cut points 1, 4 and 6.}
+	\label{displacement_mutation}
+\end{figure}
+
 %\subsection{Assigned mutation}
 \subsection{Implementation details}
 
