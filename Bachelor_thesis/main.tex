@@ -1,0 +1,162 @@
+\documentclass[%
+a4paper,
+12pt,
+parskip=half,
+numbers=noenddot,
+twoside,
+abstract=on,
+headings=standardclasses,
+headings=big,
+]{scrartcl}
+
+\usepackage[main=english, ngerman]{babel}
+
+\usepackage[margin=2.8cm,bottom=2.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage[vlined,ruled]{algorithm2e}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{csquotes}
+
+\usepackage[]{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor={red!50!black},
+  citecolor={blue!90!black},
+  urlcolor={blue!50!black}
+}
+
+%---------------------------------------------------------------------%
+% Floats
+
+\def\textfraction{.01}
+\def\topfraction{.8}
+\def\bottomfraction{.8}
+\def\floatpagefraction{.8}
+
+
+%---------------------------------------------------------------------%
+% Bibiliography
+
+\usepackage[
+style=numeric,
+backend=bibtex, 
+maxbibnames=99,
+firstinits=true,
+natbib
+]{biblatex}
+
+\DeclareFieldFormat[
+article,inbook,incollection,inproceedings,patent,thesis,unpublished
+]{citetitle}{#1}
+\DeclareFieldFormat[
+article,inbook,incollection,inproceedings,patent,thesis,unpublished
+]{title}{#1}
+
+\DeclareNameAlias{sortname}{last-first}
+
+\DeclareNameAlias{author}{first-last}
+
+% Separation between two bibliography items
+\setlength\bibitemsep{1.5\itemsep}
+
+\addbibresource{literatur.bib}
+
+%---------------------------------------------------------------------%
+% Settings
+
+\graphicspath{{./img/}}
+
+
+%---------------------------------------------------------------------%
+% Page styles
+
+\usepackage[]{scrlayer-scrpage}
+\automark[subsection]{section}
+
+
+%---------------------------------------------------------------------%
+% Author
+
+\author{Valeriya Bechberger}
+\title{Genetic Algorithms for the Traveling Salesman Problem}
+\date{\today}
+
+\newcommand{\ThesisType}{Bachelor thesis}  %bei Masterarbeit anpassen
+\newcommand{\ThesisSupFst}{Prof. Dr. Sigrid Knust}
+\newcommand{\ThesisSupSnd}{Sven Boge M. Sc.}
+
+%=====================================================================%
+
+\begin{document}
+
+%---------------------------------------------------------------------%
+% Frontmatter
+
+\pagestyle{empty}
+\pagenumbering{alph}
+
+\input{sections/titlepage.tex}
+
+\cleardoublepage
+
+\input{sections/abstract.tex}
+
+\cleardoublepage
+
+\pagenumbering{Roman}
+
+\tableofcontents{}
+
+\cleardoublepage
+
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+
+%---------------------------------------------------------------------%
+% Content
+
+\input{sections/introduction.tex}
+\cleardoublepage
+\input{sections/chapter_general_definitions.tex}
+\cleardoublepage
+\input{sections/chapter_representation_types.tex}
+\cleardoublepage
+\input{sections/chapter_constructive_heuristics.tex}
+\cleardoublepage
+\input{sections/chapter_selection_operators.tex}
+\cleardoublepage
+\input{sections/chapter_crossover_operators.tex}
+\cleardoublepage
+\input{sections/chapter_mutation_operators.tex}
+\cleardoublepage
+\input{sections/chapter_preprocessing.tex}
+\cleardoublepage
+\input{sections/chapter_experiments_crossover_types.tex}
+\cleardoublepage
+\input{sections/chapter_experiments_representation_types.tex}
+\cleardoublepage
+\input{sections/conclusion.tex}
+
+
+%---------------------------------------------------------------------%
+% Bibliography
+\cleardoublepage
+\printbibliography[heading=bibintoc]
+
+\cleardoublepage
+\input{sections/erklaerung.tex}
+
+\end{document}
