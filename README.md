@@ -1,4 +1,3 @@
-Bachelor thesis "Genetic algorithms for the traveling salesman problem"
 
 -> LAUNCH THE GENETIC ALGORITHM:
 
