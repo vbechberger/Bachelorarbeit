@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+/Users/valeriyabechberger/Desktop/Bachelorarbeit/.metadata/.plugins/org.eclipse.jdt.core
-3622984261.index
-2259773393.index
-1214101883.index

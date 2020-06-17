@@ -1,9 +1,0 @@
-package genetic;
-
-public class TSPType {
-
-	public TSPType() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
